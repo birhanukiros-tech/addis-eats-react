@@ -1,0 +1,5 @@
+Abel,100
+Sara,200
+Abel,50
+Miki,300
+Sara,100
