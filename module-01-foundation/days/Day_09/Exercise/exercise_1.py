@@ -23,8 +23,6 @@ def inorder(root):
         print(root.value, end=" ")
         inorder(root.right)
 
-
-# Test
 balances = [500, 300, 700, 200, 400, 600, 800]
 
 root = None
