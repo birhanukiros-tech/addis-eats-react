@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12 Exercises - Accessible HTML5 Practice</title>
+    <meta name="description" content="Complete Day 12 HTML exercises including Ethio Telecom form, Ethiopian Airlines flight table, media blocks, and accessibility fixes.">
+  </head>
+  <body>
+
+    <header>
+      <h1>Day 12: HTML5 & Accessibility Exercises</h1>
+    </header>
+
+    <main>
+
+      <section>
+        <h2>1. Ethio Telecom Service Registration</h2>
+        
+        <form action="/ethio-telecom-register" method="post">
+          <label for="full-name">Full Name:</label> <br>
+          <input type="text" id="full-name" name="fullname" required>
+          <br><br>
+
+          <label for="user-email">Email Address:</label> <br>
+          <input type="email" id="user-email" name="email" required>
+          <br><br>
+
+          <label for="phone-number">Phone Number (+251xxxxxxxxx):</label> <br>
+          <input type="tel" id="phone-number" name="phone" 
+                 pattern="^\+251[0-9]{9}$" 
+                 placeholder="+251911223344" required>
+          <br><br>
+
+          <label for="branch-select">Select Branch:</label> <br>
+          <select id="branch-select" name="branch" required>
+            <option value="">-- Choose a branch --</option>
+            <option value="bole">Bole</option>
+            <option value="kazanchis">Kazanchis</option>
+            <option value="piassa">Piassa</option>
+          </select>
+          <br><br>
+
+          <button type="submit">Register Service</button>
+        </form>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>2. Ethiopian Airlines Flight Schedule</h2>
+        <table>
+          <caption>Current Ethiopian Airlines Flight Schedule and Prices</caption>
+          <thead>
+            <tr>
+              <th scope="col">Flight</th>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">Departs</th>
+              <th scope="col">Price ETB</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">ET 302</th>
+              <td>Addis Ababa (ADD)</td>
+              <td>Nairobi (NBO)</td>
+              <td>08:15 AM</td>
+              <td>18,500 ETB</td>
+            </tr>
+            <tr>
+              <th scope="row">ET 500</th>
+              <td>Addis Ababa (ADD)</td>
+              <td>Washington (IAD)</td>
+              <td>10:30 PM</td>
+              <td>85,000 ETB</td>
+            </tr>
+            <tr>
+              <th scope="row">ET 704</th>
+              <td>Addis Ababa (ADD)</td>
+              <td>Paris (CDG)</td>
+              <td>11:40 PM</td>
+              <td>62,000 ETB</td>
+            </tr>
+            <tr>
+              <th scope="row">ET 602</th>
+              <td>Addis Ababa (ADD)</td>
+              <td>Dubai (DXB)</td>
+              <td>09:00 PM</td>
+              <td>28,400 ETB</td>
+            </tr>
+            <tr>
+              <th scope="row">ET 100</th>
+              <td>Addis Ababa (ADD)</td>
+              <td>Bahir Dar (BJR)</td>
+              <td>07:00 AM</td>
+              <td>4,200 ETB</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>3. Featured Landmark & Location Map</h2>
+        
+        <figure>
+          <img src="lalibela.jpg" alt="Rock-hewn Church of St. George in Lalibela, Ethiopia" width="400">
+          <figcaption>The historical Rock-Hewn Church of St. George (Biete Ghiorgis) in Lalibela.</figcaption>
+        </figure>
+
+        <br>
+
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!..." 
+          title="Map showing the location of Addis Ababa Bole International Airport" 
+          width="400" 
+          height="250">
+        </iframe>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>4. Corrected Accessible Snippets</h2>
+
+        <button type="button">Click Me</button>
+        <br><br>
+        <label for="username-fix">Username:</label>
+        <input type="text" id="username-fix" name="username">
+        <br><br>
+
+        <img src="logo.png" alt="Addis Tech Hub official logo">
+      </section>
+
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Addis Tech Hub - Day 12 Exercises Completed.</p>
+    </footer>
+
+</body>
+</html>
