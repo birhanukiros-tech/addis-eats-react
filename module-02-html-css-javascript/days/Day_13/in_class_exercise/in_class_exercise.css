@@ -1,0 +1,85 @@
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+ }
+
+ :root {
+     --bg-color: #fcf8f2;
+     --text-color: #2b2b2b;
+     --accent-gold: #d4af37;
+     --card-bg: #ffffff;
+     --border-color: #e0e0e0;
+     --zebra-bg: #f7f3ed;
+     --hover-shadow: rgba(0, 0, 0, 0.15);
+ }
+
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     line-height: 1.6;
+     background-color: var(--bg-color);
+     color: var(--text-color);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     padding: 20px;
+ }
+
+ .menu-card {
+     background-color: var(--card-bg);
+     width: 100%;
+     max-width: 380px;
+     padding: 25px;
+     border: 1px solid var(--border-color);
+     border-top: 6px solid var(--accent-gold);
+     /* Gold Top Accent */
+     border-radius: 8px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .menu-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 10px 20px var(--hover-shadow);
+ }
+
+ .dish-title {
+     font-size: 1.5rem;
+     color: var(--text-color);
+     margin-bottom: 10px;
+ }
+
+ .dish-description {
+     font-size: 0.95rem;
+     margin-bottom: 15px;
+ }
+
+ .ingredient-list {
+     list-style-type: none;
+     margin-bottom: 20px;
+     border-top: 1px solid var(--border-color);
+ }
+
+ .ingredient-list li {
+     padding: 8px 10px;
+     font-size: 0.9rem;
+     border-bottom: 1px solid var(--border-color);
+ }
+
+ .ingredient-list li:nth-child(even) {
+     background-color: var(--zebra-bg);
+ }
+
+ .price-container {
+     text-align: right;
+     font-weight: bold;
+     font-size: 1.3rem;
+     color: var(--accent-gold);
+ }
+
+ .price::before {
+     content: "ETB ";
+     font-size: 1rem;
+     color: var(--text-color);
+ }
