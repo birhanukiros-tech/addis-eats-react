@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habesha Eatery-Tebale Resrvation & Menu</title>
+    <meta name="desicription" content="Reserve a tabel at Habesha Eatery in Addis Ababa and explor our traddational Ethiopin food manu">
+<body>
+    <header>
+        <h1>Reserve Habesha Eatry</h1>
+        <nav>
+            <a href="index.html">Reservation</a><br>
+            <a href="contact.html">contact</a>
+        </nav>
+    </header>
+        <h1>Habesha Eatery Resturant</h1>
+    <main>
+        <h2>Table Reservation</h2><br><br>
+        <form action="/Reserve" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="tel">Phone number</label>
+            <input type="tel" id="tel" required><br><br>
+            <label for="party-size">Number of Guests</label>
+            <input type="number" id="party-size" name="Guests" min="1" max="=20" required><br><br>
+            <label for="special-requistes">VIP</label>
+            <textarea name="requusts" id="special-requistes" rows="3" cols="10" placeholder="wite your massage here..."></textarea><br><br>
+            <button type="submit">Reserve</button>
+        </form>
+        <section>
+            <h2>Addis Ababa Resturant Menu Tabel</h2>
+            <table>
+                <caption>Todays launch and dinner packages</caption>
+                <tr>
+                    <th>Food Item</th>
+                    <th>Price (ETB)</th>
+                    <th>Avaliabel Time</th>
+                </tr>
+                <tr>
+                    <td>Special Kitfo</td> <td>300</td> <td>6:00-6:30</td>
+                </tr>
+                <tr>
+                    <td>Fast Food</td> <td>200</td> <td>6:00-7:00</td>
+                </tr>
+                <tr>
+                    <td>Shiro</td> <td>150</td> <td>7:00-8:00</td>
+                </tr>
+            </table><br>
+        </section>
+        <section>
+            <img src="assets/Kitfo.png" width="350" height="400" alt="special guragie kitfo"><br><br>
+            <img src="assets/Fast food.png" width="350" height="400" alt="best fast food"><br><br>
+            <img src="assets/Shiro.png" width="350" height="400" alt="best common food in Ethiopia"><br><br>
+            <iframe src="http://googelusercontent.com/maps.googel.com/3!..."
+            title="Habesha Eatry Resturant location Map in Addis Ababa" width="300" height="200">
+            </iframe>
+        </section>
+    </main>
+    <footer><p>Bole, Addis Ababa | &copy; 2026 Habesha Eatery</p></footer>
+</body>
+</html>
