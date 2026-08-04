@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="veiwport" content="width=device-width, initial-scale=1.0">
+        <title>Habesha Eatery</title>
+         <link rel="stylesheet" href="../../Day_14/in _class_exercise/style.css">
+        <style>
+            legend{
+                font-size: large; font-weight: bold; color: green; background-color: gold;
+            }
+            label{
+                color: blue; 
+                font-weight: bold; 
+                background-color: aliceblue;
+            }
+            h2{
+                font-weight: 100; color: blue; background-color: gold;
+            }
+            h1{color: blue; background-color: gold;}
+            
+            footer{
+                color: blue; background-color: gold;
+            }
+            h3{
+                 font-weight:bold ; padding-right: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-container">
+        <header class="navbar">
+            <div class="logo">Habesha Eatery</div>
+        <nav class="nav-links">
+            <ul style="list-style-type: square;">
+            <li><a href="in_class_exercise.html">Reserve</a></li>
+           <li><a href="menu.html">Menu</a></li>
+           <li><a href="gallary.html">Gallary</a></li>
+           <li><a href="../../Day_14/in _class_exercise/index.html">Home</a></li>
+           <li><a href="../../Day_14/in _class_exercise/contact.html">Contact Us</a></li>
+            </ul>
+            </nav>
+        </header>
+        <main class="content-area">
+        <form>
+            <fieldset>
+            <legend>Habesha Eatery Reservation</legend>
+            <lable for="name" style="color: blue; font-weight: bold; background-color: aliceblue;">Name</lable>
+            <input id="name" required type="text">
+            <br><br>
+            <label for="email">Email</label>
+            <input id="email" required type="email">
+            <br><br>
+            <lable for="tel" style="color: blue; font-weight: bold; background-color: aliceblue;">Phone number</lable>
+            <input id="tel" required type="tel">
+            <br><br>
+            <label for="date">calander</label>
+            <input id="date" required type="date">
+            <br><br>
+            <lable for="party-size">Gusts</lable>
+            <input id="party-size" required type="number" min="1" max 20>
+            <br><br>
+            <label for="special-requests">Special Requests:</label><br>
+            <textarea id="special-requests" nam="special-requests" rows="3" cols="30" placeholder="write special requiest..">
+            </textarea>
+            </fieldset>
+            <button type="submit" class=".bt">Reserve</button>
+        </form>
+        <section>
+            <h2>Our location</h2>
+            <iframe src="https://www.google.com/map/embed?..." titl "habesha eatery location
+            map" width="400" height="250"></iframe>
+        </section>
+
+        </main>
+        <footer class="site-footer">
+            <h3>For more info</h3>
+            <p>call us:<a href="tel;0911223344">0911223344</a></p>
+            <p>Email:<a href="mailto;habesha21@gmail.com">habesha21@gmail.com</a></p>
+        <p>&copy;2026 Habesha Eatery.All rights reserved</p>
+     
+        </footer>
+        </div>
+    </body>
+</html>
