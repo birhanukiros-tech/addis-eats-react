@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body { font-family: Arial, sans-serif; }
+
+/* -----------------------------------------
+   Exercise 4: Grid Layout with Media Query 
+----------------------------------------- */
+.page-layout {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "sidebar main"
+        "footer footer";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+.header { grid-area: header; background: #333; color: white; }
+.sidebar { grid-area: sidebar; background: #f4f4f4; padding: 20px; }
+.main-content { grid-area: main; padding: 20px; }
+.footer { grid-area: footer; background: #333; color: white; padding: 20px; text-align: center; }
+
+/* ከ 700px በታች ሲሆን ወደ አንድ መስመር (Single Column) ይቀየራል */
+@media (max-width: 700px) {
+    .page-layout {
+        grid-template-areas: 
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+}
+
+/* -----------------------------------------
+   Exercise 1: Flexbox Navbar 
+----------------------------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* ሎጎ በግራ፣ ሊንኮች በቀኝ */
+    align-items: center;            /* vertically centered */
+    padding: 15px 20px;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.nav-links a { color: white; text-decoration: none; }
+.nav-links button { padding: 8px 15px; cursor: pointer; }
+
+/* -----------------------------------------
+   Exercise 2: Flex Cards (4 cards)
+----------------------------------------- */
+.flex-cards {
+    display: flex;
+    flex-wrap: wrap; /* ጠባብ ስክሪን ላይ ወደ ታች እንዲወርዱ */
+    gap: 15px;
+    margin: 20px 0;
+}
+.card {
+    flex: 1; /* እኩል ቦታ እንዲካፈሉ */
+    min-width: 150px;
+    background: #e2e2e2;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+/* -----------------------------------------
+   Exercise 3: Grid Photo Gallery 
+----------------------------------------- */
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+.photo {
+    background: #3498db;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* -----------------------------------------
+   Exercise 5: Product Card (ETB Sale Badge)
+----------------------------------------- */
+.product-card {
+    position: relative; /* ለባጁ መነሻ እንዲሆን */
+    width: 250px;
+    height: 150px;
+    background: #fff;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.badge {
+    position: absolute;
+    top: -15px;         /* ከላይ ጠርዝ አውጣው */
+    right: -15px;       /* ከቀኝ ጠርዝ አውጣው */
+    background: red;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* ክብ (Circular) እንዲሆን */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
