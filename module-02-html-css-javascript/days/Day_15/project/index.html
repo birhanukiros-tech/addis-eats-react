@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habesha Eatery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Habesha Eatery</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="reserve.html">Reserve</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallary.html">Gallary</a>
+            <a href="contac.html">Contact Us</a>
+        </nav>
+        </header>
+    <main>
+        <section>
+            <h2>Welcome to Habesha Eatery</h2>
+            <p><strong>Habesha Eatery</strong> is one of the most trdational resturant in Ethiopia Addis Ababa.</p>
+            <article class="story">
+            <h2>Story of Habesh Eatery</h2>
+            <p>Habesa Eatery is founded in 2000 at Addis Ababa by selling tea and bread with small Home.
+            At that time its inital capital was only 1000 ETB and by hardworking and saving itgrowes to open the most popular tradational resturant in different brachis.</p> 
+            </article>
+            <h3>Our Branches</h3>
+            <ul>
+                <li>Bole
+                    <ul>
+                        <li>Habsha eatry no 1</li>
+                        <li>Habesha eatry no 2</li>
+                    </ul>
+                </li>
+                <li>Ayat</li>
+                <li>Jemo</li>
+                <li>4 Kilo</li>
+                <li>Piassa</li>
+            </ul>
+
+            <p id="branches">Most of the branch are open recentlly</p>
+
+            <ol>
+                <li>2015
+                    <ol>
+                        <li>Bole</li>
+                        <li>aAyatt</li>
+                    </ol>
+                </li>
+                <li>2017
+                    <ol>
+                        <li>4 kilo</li>
+                        <li>Piyasa</li>
+                    </ol>
+                </li>
+                <li>2018
+                    <ol>
+                        <li>Habesha Eatery 1</li>
+                        <li>Habesha eatery 2</li>
+                    </ol>
+                </li>
+            </ol>
+        </section>
+        <section>
+        <fieldset>
+            <legend>Reserv Table</legend>
+            <form action="/resrve">
+                <label for="name" class="required">Full Name</label>
+                <input type="text" id="name" required placeholder="your full name"><br><br>
+
+                <label for="email" class="required">Email</label>
+                <input type="email" name="email" id="email" required><br><br>
+
+                <label for="tel" class="required">Phone</label>
+                <input type="tel" id="tel" name="phone" pattern="+251[0-9]{9}"><br><br>
+
+                <label for="gustes" class="required">Guests</label>
+                <input type="number" name="gustes" id="gustes" min="1" max="10"><br><br>
+
+                <label for="date" class="required"> Date</label>
+                <input type="date" id="date" name="date"><br><br>
+
+                <label for="day" class="required">Day</label><br>
+
+                <input type="radio" id="saturday" name="day">
+                <label for="saturday" class="required">Saturday</label><br>
+
+                <input type="radio" id="sunday" name="day">
+                <label for="sunday" class="required">Sunday</label><br>
+
+                <label for="branches" class="required">which branch is you reserve?</label>
+                <select name="branch" id="branches">
+                <option value="bole">Bole</option>
+                <option value="ayat">Ayat</option>
+                <option value="4 kilo">4 Kilo</option>
+                <option value="piyassa">Piyassa</option>
+                </select><br><br>
+
+                <label for="time">Time</label><br>
+                <input type="checkbox" id="breakfast" name="breakfast">
+                <label for="breakfast" class="required"> Breakfast</label><br>
+
+                <input type="checkbox" id="launch" name="launch">
+                <label for="launch" class="required">Launch</label><br>
+
+                <input type="checkbox" id="dinner" name="dinner">
+                <label for="dinner" class="required">Dinner</label><br>
+
+                <input type="submit" name=submit"">
+
+               <button class="chat">Reserve</button>
+                
+            </form>
+        </fieldset>
+        </section>
+        <section>
+            <h3>Our Delisous Food</h3>
+           <div class="foods">
+        
+            <figure class="food-card">
+                <span class="badge">Free launch</span>
+                 <img src="../assets/photo/Shiro.png" alt="Shiro" width="150">
+                 <figcaption>Shiro</figcaption>
+            </figure>
+
+            <figure class="food-card">
+                <span class="badge">Best Gurgie kitfo</span>
+            <img src="../assets/photo/Kitfo.png" alt="Kitfo" width="150">
+            <figcaption>Kitfo</figcaption>
+            </figure>
+
+            <figure class="food-card">
+                <span class="badge">20% discount</span>
+            <img src="../assets/photo/Beye_A.png" alt="Beyeaynetu" width="150">
+            <figcaption>Beyeaynetu</figcaption>
+            </figure>
+
+            <figure class="food-card">
+                <span class="badge">⭐ Special</span>
+            <img src="../assets/photo/shekila Tibs.png" alt="Shekila Tibs" width="150" class="popular">
+            <figcaption>Shekila Tibs</figcaption>
+            </figure>
+
+            <figure class="food-card">
+                <span class="badge">Most Popular</span>
+            <img src="../assets/photo/dulet.png" alt="Dulet" width="150">
+            <figcaption>Dulet</figcaption>
+            </figure>
+
+            <figure class="food-card">
+                <span class="badge">Best Breakfast</span>
+            <img src="../assets/photo/Firfir.png" alt="Firfir" width="150">
+            <figcaption>Firfir</figcaption>
+            </figure>
+            </div>
+        </section>
+        <br>
+        <table>
+            <caption>Habesha Eatery menu</caption>
+            <tr>
+                <th>List of Foods</th>
+                <th>Price (ETB)</th>
+            </tr>
+            <tr>
+                <td>Shiro</td>
+                <td>200</td>
+            </tr>
+            <tr>
+                <td>Beyeaynetu</td>
+                <td>300</td>
+            </tr>
+            <tr>
+                <td>Kitfo</td>
+                <td>400</td>
+            </tr>
+
+            <tr>
+                <td>Shekila Tibs</td>
+                <td>450</td>
+            </tr>
+
+            <tr>
+                <td>Firfir</td>
+                <td>300</td>
+            </tr>
+
+            <tr>
+                <td>Dulet</td>
+                <td>350</td>
+            </tr>
+        </table>
+        <section>
+            <h4>Contact Us</h4>
+            <div class="contact">
+                <p>phone number <a href="tel:0909080709">0909080709</a></p>
+                <p>Email <a href="mailto:habesha@gmail.com">habesha@gmail.com</a></p>
+            </div>
+      <iframe src="https://www.google.com/maps/place/Habesha+Kurt+%26+Restaurant/@8.9875058,38.7872291,17z/data=!3m1!4b1!4m6!3m5!1s0x164b859df7ce366b:0xde3730ca16fffd63!8m2!3d8.9875058!4d38.7872291!16s%2Fg%2F11yf2yyj9g?entry=ttu&g_ep=EgoyMDI2MDgwMy4wIKXMDSoASAFQAw%3D%3D" frameborder="0">
+        Habesha Eatery
+      </iframe>
+    </main>
+    <footer>
+        <p>&copy; all rights are reservid</p>
+        <p>2026 habesha eatery</p>
+        <p>created by Birhanu Kiros</p>
+    </footer>
+
+</body>
+</html>

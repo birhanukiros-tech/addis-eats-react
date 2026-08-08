@@ -1,0 +1,166 @@
+*{
+    box-sizing: border-box;
+}
+:root{
+    --main-color:purple
+}
+
+body{
+    background-color: rgb(133, 236, 133); margin: 5px;
+    border: 2px solid rgb(0, 76, 255); padding: 15px;
+}
+
+main{
+    max-width: 1200px; margin: 0 auto;
+}
+
+h1, h2, h3, h4{
+    color: var(--main-color);
+    font-family: Georgia;
+}
+button:hover{
+    color: red;background-color: rgb(237, 200, 200);
+     font-size: 24px;
+     transform: translateY(-2px);
+}
+button {
+     transition: background-color 200ms ease,
+                color 200ms ease,
+                transform 200ms ease;
+}
+
+strong{
+    color:red
+}
+.story{
+    color: blue; font-family: Georgia; font-size: 18px;
+    line-height: 1.6rem;
+}
+ul{
+    color: blue; font-family: Georgia; font-size: 18px;
+}
+#branches{
+    color: red
+}
+ol{
+    color: blue; font-family: Georgia; font-size: 18px;
+}
+fieldset{
+    background-color: aqua; border: 3px solid green; font-family: Georgia; font-size: 18px;
+}
+legend{
+    color: red; font-size: 24px;
+}
+table, td{
+    border: 1px solid black; border-collapse: collapse; color: blue;
+}
+.contact{
+    color: purple; font-family: Georgia; font-size: 18px;
+}
+footer{
+    color: red; font-family: Georgia; font-size: 18px;
+}
+header{
+    position: sticky;
+    top: 0;
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    background: rgb(78, 127, 200);
+    
+}
+
+nav a{
+    display: block;
+    background: rgb(230, 224, 214);
+    padding: 15px 25px;
+    color: black;
+    text-decoration: none;
+}
+nav a:hover{
+    color: red;
+}
+input:focus{
+    border: 2px solid blue;
+}
+input:checked{
+    accent-color: red;
+}
+tr:nth-child(even){
+  background-color: rgb(218, 226, 213);  
+}
+
+
+.required::after{
+    content: "*";
+    color: red;
+}
+h1::before{
+    content: "💕";
+}
+h1::after{
+    content: "💕";
+}
+
+.foods{
+    display: grid; gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.food-card {
+    transition: background-color 200ms ease,
+                color 200ms ease,
+                transform 200ms ease;
+}
+
+.food-card:hover {
+    color: red;
+    background-color: rgb(237, 200, 200);
+    transform: translateY(-5px);
+    transform: scale(1.03);
+    
+}
+
+figure{
+    color: purple; font-size: 22px; font-weight: bold;
+}
+figure:hover{
+    color: green;
+}
+
+.popular{
+    align-self: center;
+}
+.food-card{
+    position: relative;
+    display: inline-block;
+}
+
+.badge{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    background-color: rgb(174, 0, 255);
+    color: white;
+
+    padding: 5px 10px;
+    border-radius: 15px;
+
+    font-size: 14px;
+}
+.chat{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; background-color: gold;
+
+}
+img{
+    max-width: 100%; height: auto;
+}
