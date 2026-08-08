@@ -1,0 +1,14 @@
+1. VAT: 1150
+   VAT arrow: 1150
+2. Counter: 1
+   Counter: 2
+   Counter: 3
+3. Member price: 900 ETB
+   Sale price: 700 ETB
+4. Prices with VAT: [ 115, 230, 345, 460 ]
+5. Ethiopian cities:
+1. Addis Ababa
+2. Mekelle
+3. Bahir Dar
+4. Hawassa
+5. Gondar
