@@ -1,38 +1,47 @@
-const bill = Number(process.argv[2]);
-const partySize = Number(process.argv[3]);
+ // 1 converting stiring to number
+let bill = "800";
+bill = Number(bill);
 
-let tipRate;
+let partySize = 6;
+
+// Tip
+let tipAmount;
 
 if (bill > 300) {
-    tipRate = 0.10;
+    tipAmount = bill * 0.10;
 } else {
-    tipRate = 0.05;
+    tipAmount = bill * 0.05;
 }
 
-const tip = bill * tipRate;
-const total = bill + tip;
-const perPerson = total / partySize;
+// Service fee
+let paymentMethod = "TeleBirr";
+let serviceFee;
 
-let service;
-switch (process.argv[4]) {
+switch (paymentMethod) {
     case "TeleBirr":
-        service = 10;
+        serviceFee = bill * 0.02;
         break;
 
     case "CBE Birr":
-        service = 5;
+        serviceFee = bill * 0.03;
         break;
 
     default:
-        service = 0;
+        serviceFee = bill * 0.02;
 }
 
-const finalTotal = total + service;
-const finalPerPerson = finalTotal / partySize;
+// Total
+let total = bill + tipAmount + serviceFee;
 
-console.log(`Bill: ${bill} ETB`);
-console.log(`Tip: ${(tipRate * 100)}%`);
-console.log(`Tip amount: ${tip.toFixed(2)} ETB`);
-console.log(`Service fee: ${service.toFixed(2)} ETB`);
-console.log(`Total: ${finalTotal.toFixed(2)} ETB`);
-console.log(`Per person: ${finalPerPerson.toFixed(2)} ETB`);
+// Per person
+let perPerson = total / partySize;
+
+console.log(`
+=== TeleBirr Tip and Split Calculator ===
+Bill: ${bill} ETB
+Tip: ${tipAmount} ETB
+Service Fee: ${serviceFee} ETB
+Total: ${total} ETB
+Party Size: ${partySize}
+Per Person: ${perPerson} ETB
+`);
