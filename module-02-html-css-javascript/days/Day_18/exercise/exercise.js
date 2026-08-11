@@ -21,7 +21,6 @@ for (const [key, value] of Object.entries(customer)) {
     console.log(`${key}: ${value}`);
 }
 
-
 // 3. Destructuring + parameter destructuring
 const { name, city } = customer;
 
