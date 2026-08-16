@@ -1,12 +1,12 @@
 # TeleBirr Transaction Report
 
-A small JavaScript report generator for TeleBirr transactions from an Addis shop.
+A small JavaScript  mini project report that process an array of TeleBirr transactions from an Addis shop.
 
 ## Modules
 
 ### transactions.js
 
-Contains and exports the transaction data.
+Contains and exports the transaction data array.
 
 Each transaction contains:
 
@@ -18,8 +18,7 @@ Each transaction contains:
 The transaction type can be `credit` or `debit`.
 
 ### report.js
-
-Contains and exports the report functions.
+Contains and exports reusabel summary functions.
 
 It uses:
 
