@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Market</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Addis Market</h1>
+
+    <form id="item-form">
+        <input
+            type="text"
+            id="item-name"
+            placeholder="Grocery name"
+        >
+
+        <input
+            type="number"
+            id="item-price"
+            placeholder="Price in ETB"
+        >
+
+        <button type="submit">Add</button>
+    </form>
+
+    <p id="total">Total: ETB 0</p>
+
+    <ul id="item-list"></ul>
+
+    <script src="app.js"></script>
+</body>
+</html>
