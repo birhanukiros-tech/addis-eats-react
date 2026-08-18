@@ -3,65 +3,67 @@ const input = document.querySelector("#country-input");
 const facts = document.querySelector("#facts");
 
 function render(label, value) {
-  const p = document.createElement("p");
+    const p = document.createElement("p");
 
-  const strong = document.createElement("strong");
-  strong.textContent = `${label}: `;
+    p.textContent = `${label}: ${value}`;
 
-  p.append(strong, value);
-  facts.append(p);
+    facts.append(p);
 }
 
 async function showCountry(name) {
-  facts.textContent = "Loading...";
+    facts.textContent = "Loading...";
 
-  try {
-    const res = await fetch(
-      `https://restcountries.com/v3.1/name/${name}`
-    );
+    try {
+        const response = await fetch(
+            `https://countries.dev/name/${name}`
+        );
 
-    if (!res.ok) {
-      throw new Error("Country not found");
+        if (!response.ok) {
+            throw new Error("Country not found");
+        }
+
+        const [countryData] = await response.json();
+
+        facts.innerHTML = "";
+
+        render("Name", countryData.name);
+        render("Capital", countryData.capital);
+        render(
+            "Population",
+            countryData.population.toLocaleString()
+        );
+        render("Region", countryData.region);
+
+        const currency = countryData.currencies[0];
+
+        render(
+            "Currency",
+            `${currency.name} (${currency.code})`
+        );
+
+        const img = document.createElement("img");
+
+        img.src = countryData.flag;
+        img.alt = `${countryData.name} flag`;
+
+        facts.append(img);
+
+    } catch (error) {
+        facts.textContent = error.message;
     }
-
-    const [country] = await res.json();
-
-    facts.innerHTML = "";
-
-    render("Capital", country.capital[0]);
-    render("Population", country.population.toLocaleString());
-    render("Region", country.region);
-
-    const currencies = Object.values(country.currencies)
-      .map(currency => `${currency.name} (${currency.symbol || ""})`)
-      .join(", ");
-
-    render("Currencies", currencies);
-
-    const flag = document.createElement("img");
-    flag.src = country.flags.png;
-    flag.alt = `${country.name.common} flag`;
-    flag.width = 200;
-
-    facts.append(flag);
-
-  } catch (error) {
-    facts.textContent = "Country not found. Please try again.";
-  }
 }
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-  const countryName = input.value.trim();
+    const country = input.value.trim();
 
-  if (countryName === "") {
-    facts.textContent = "Please enter a country name.";
-    return;
-  }
+    if (country === "") {
+        facts.textContent = "Please enter a country.";
+        return;
+    }
 
-  showCountry(countryName);
+    showCountry(country);
 });
 
-// Show Ethiopia when the page opens
 showCountry("Ethiopia");
