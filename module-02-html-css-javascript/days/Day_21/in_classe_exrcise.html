@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+</head>
+<body>
+    <h1>Signup</h1>
+    <form id="signup">
+        <input id="name">
+        <input id="phone">
+
+        <button>Submit</button>
+        
+        <p id="error"></p>
+        <p id="result"></p>
+
+    </form>
+    <script>
+        const form = document.querySelector("#signup");
+        const nameInput = document.querySelector("#name");
+        const phoneInput = document.querySelector("#phone");
+        const error = document.querySelector("#error");
+        const result = document.querySelector("#result");
+        
+        form.addEventListener("submit", (event) =>{
+            event.preventDefault();
+
+            const name =nameInput.value.trim();
+            if(!name){
+                error.textContent= "please enter you name";
+                return;
+            }
+            if (name.length<2){
+                error.textContent= "name too short";
+                return
+            }
+            
+                
+            
+
+            const phonePattern= /^09\d{8}$/;
+            const phone =phoneInput.value.trim();
+
+            if(!phonePattern.test(phone)){
+                error.textContent= "please enter a valid phone number";
+                return;
+                
+            }
+            const user= {
+                name,
+                phone
+            };
+     
+            localStorage.setItem("user", JSON.stringify(user));
+            result.textContent = `Saved user: ${user.name} - ${user.phone}`;
+
+            
+        });
+        
+         const savedUser = localStorage.getItem("user");
+         if (savedUser){
+
+                const readUser = JSON.parse(savedUser);
+                result.textContent =`Saved user: ${readUser.name} - ${readUser.phone}`;
+            }
+
+    </script>
+</body>
+</html>
