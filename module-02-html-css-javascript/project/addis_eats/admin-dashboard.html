@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Addis Eats - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+<header class="admin-header">
+
+    <div>
+        <h1>🍽️ Addis Eats</h1>
+        <p>Admin Dashboard</p>
+    </div>
+
+    <nav>
+
+        <a href="index.html"> Customer Site</a>
+
+        <button
+            type="button"
+            id="logout-button"
+        >
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+<main class="admin-main">
+
+
+    <!-- =================================================
+         DASHBOARD ANALYTICS
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+        <h2>Dashboard Overview</h2>
+
+        <div class="stats-grid">
+
+            <article class="stat-card">
+
+                <h3>Total Revenue</h3>
+
+                <p id="total-revenue">
+                    0 ETB
+                </p>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <h3>Total Orders</h3>
+
+                <p id="total-orders">
+                    0
+                </p>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <h3>Average Order</h3>
+
+                <p id="average-order">
+                    0 ETB
+                </p>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <h3>Pending Orders</h3>
+
+                <p id="pending-orders">
+                    0
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ORDER ANALYTICS
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+        <h2>Order Status Distribution</h2>
+
+        <div id="status-distribution"
+             class="status-grid">
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         TOP SELLING DISHES
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+        <h2>Top Selling Dishes</h2>
+
+        <div id="top-selling-dishes">
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MENU MANAGEMENT
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <h2>Menu Management</h2>
+
+            <button
+                type="button"
+                id="add-dish-button"
+            >
+                + Add Dish
+            </button>
+
+        </div>
+
+
+        <input
+            type="search"
+            id="menu-search"
+            placeholder="Search dishes..."
+        >
+
+
+        <div id="menu-list"
+             class="admin-menu-list">
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ADD / EDIT DISH FORM
+    ================================================== -->
+
+    <section
+        id="dish-form-section"
+        class="dashboard-section"
+        hidden
+    >
+
+        <h2 id="dish-form-title">
+            Add New Dish
+        </h2>
+
+
+        <form id="dish-form">
+
+            <input
+                type="hidden"
+                id="dish-id"
+            >
+
+
+            <label for="dish-name">
+                Dish Name
+            </label>
+
+            <input
+                type="text"
+                id="dish-name"
+                required
+            >
+
+
+            <label for="dish-description">
+                Description
+            </label>
+
+            <textarea
+                id="dish-description"
+                rows="3"
+                required
+            ></textarea>
+
+
+            <label for="dish-price">
+                Price (ETB)
+            </label>
+
+            <input
+                type="number"
+                id="dish-price"
+                min="1"
+                required
+            >
+
+
+            <label for="dish-category">
+                Category
+            </label>
+
+            <select id="dish-category" required>
+
+                <option value="ethiopian">
+                    Ethiopian
+                </option>
+
+                <option value="pizza">
+                    Pizza
+                </option>
+
+                <option value="burgers">
+                    Burgers
+                </option>
+
+                <option value="drinks">
+                    Drinks
+                </option>
+
+            </select>
+
+
+            <label for="dish-image">
+                Image Path
+            </label>
+
+            <input
+                type="text"
+                id="dish-image"
+                placeholder="images/burger.png"
+                required
+            >
+
+
+            <label for="dish-ingredients">
+                Ingredients
+            </label>
+
+            <input
+                type="text"
+                id="dish-ingredients"
+                placeholder="Beef, Onion, Cheese"
+            >
+
+
+            <div class="form-buttons">
+
+                <button type="submit">
+                    Save Dish
+                </button>
+
+                <button
+                    type="button"
+                    id="cancel-dish-button"
+                    class="secondary-button"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ORDER MANAGEMENT
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <h2>Order Management</h2>
+
+        </div>
+
+
+        <div id="orders-list">
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>

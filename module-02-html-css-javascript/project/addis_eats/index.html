@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Eats</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+    <div class="brand">
+        <h1>🍽️ Addis Eats</h1>
+        <p>Delicious food, delivered in Addis.</p>
+    </div>
+
+    <nav aria-label="Main navigation">
+        <a href="#menu">Menu</a>
+        <a href="#cart">Cart</a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- SEARCH -->
+    <section id="search-section">
+        <h2>Find Your Favorite Food</h2>
+
+        <form id="search-form">
+            <label for="search-input">Search dishes</label>
+
+            <div class="search-row">
+                <input
+                    type="search"
+                    id="search-input"
+                    placeholder="Search for a dish..."
+                    autocomplete="off"
+                >
+
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    </section>
+
+
+    <!-- CATEGORIES -->
+    <section id="categories">
+        <h2>Categories</h2>
+
+        <div id="category-buttons" class="category-buttons">
+            <button type="button" data-category="all" class="active">
+                All
+            </button>
+
+            <button type="button" data-category="ethiopian">
+                Ethiopian
+            </button>
+
+            <button type="button" data-category="pizza">
+                Pizza
+            </button>
+
+            <button type="button" data-category="burgers">
+                Burgers
+            </button>
+
+            <button type="button" data-category="drinks">
+                Drinks
+            </button>
+        </div>
+    </section>
+
+
+    <!-- MENU -->
+    <section id="menu" aria-label="Food menu">
+        <h2>Our Menu</h2>
+
+        <p id="loading-message">
+            Loading menu...
+        </p>
+
+        <p id="menu-empty" hidden>
+            No dishes found.
+        </p>
+
+        <p id="menu-error" hidden>
+            Sorry, we couldn't load the menu.
+        </p>
+
+        <div id="menu-list"></div>
+    </section>
+
+
+    <!-- CART -->
+    <section id="cart" aria-label="Shopping cart">
+
+        <h2>🛒 Your Cart</h2>
+
+        <div id="cart-list"></div>
+
+        <p>
+            Total:
+            <span id="cart-total">0 ETB</span>
+        </p>
+
+        <button
+            type="button"
+            id="checkout-button">
+            Checkout
+        </button>
+
+    </section>
+
+
+    <!-- CHECKOUT -->
+    <section id="checkout" hidden>
+
+        <h2>Place Your Order</h2>
+
+        <form id="checkout-form">
+
+            <label for="customer-name">Name</label>
+
+            <input
+                type="text"
+                id="customer-name"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label for="customer-phone">Phone</label>
+
+            <input
+                type="tel"
+                id="customer-phone"
+                placeholder="09XXXXXXXX or +2519XXXXXXXX"
+                required
+            >
+
+
+            <label for="delivery-area">Delivery Area</label>
+
+            <input
+                type="text"
+                id="delivery-area"
+                placeholder="Enter your delivery area"
+                required
+            >
+
+
+            <label for="payment-method">Payment Method</label>
+
+            <select id="payment-method" required>
+                <option value="">Select payment method</option>
+                <option value="TeleBirr">TeleBirr</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+
+
+            <label for="special-instructions">
+                Special Instructions
+            </label>
+
+            <textarea
+                id="special-instructions"
+                placeholder="Example: No onions, extra sauce..."
+                rows="4"
+            ></textarea>
+
+
+            <button type="submit">
+                Place Order
+            </button>
+
+        </form>
+
+        <p id="checkout-message"></p>
+
+    </section>
+
+
+    <!-- ORDER CONFIRMATION -->
+    <section
+        id="order-confirmation"
+        hidden
+        aria-label="Order confirmation">
+
+        <h2>🎉 Order Confirmed!</h2>
+
+        <p id="confirmation-message">
+            Thank you for your order.
+        </p>
+
+    </section>
+
+    <!-- ORDER HISTORY -->
+<section id="order-history">
+
+    <h2>📦 Order History</h2>
+
+    <div id="order-history-list"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+    <p>&copy; 2026 Addis Eats. All rights are reserved.</p>
+    <p>Fresh food, delivered in Addis Ababa.</p>
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>

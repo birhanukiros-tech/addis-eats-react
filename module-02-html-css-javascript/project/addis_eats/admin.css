@@ -1,0 +1,664 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --primary-color: #176b4d;
+    --accent-color: #e9b949;
+    --background-color: #f5f7f5;
+    --white: #ffffff;
+    --text-color: #222;
+    --danger: #b00020;
+    --border: #ddd;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
+
+.admin-login-page {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 1rem;
+}
+
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+
+.login-card {
+    background-color: var(--white);
+
+    padding: 2rem;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+}
+
+
+.login-card h1 {
+    color: var(--primary-color);
+
+    margin-bottom: 0.5rem;
+}
+
+
+.login-card h2 {
+    margin-bottom: 0.3rem;
+}
+
+
+.login-subtitle {
+    color: #666;
+
+    margin-bottom: 1.5rem;
+}
+
+
+.login-card form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.6rem;
+
+    text-align: left;
+}
+
+
+.login-card input,
+.login-card button {
+    padding: 0.8rem;
+
+    border-radius: 8px;
+
+    font-size: 1rem;
+}
+
+
+.login-card input {
+    border: 1px solid var(--border);
+}
+
+
+.login-card input:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+
+.login-card button {
+    border: none;
+
+    background-color: var(--primary-color);
+
+    color: var(--white);
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    margin-top: 0.7rem;
+}
+
+
+.login-card button:hover {
+    background-color: var(--accent-color);
+
+    color: var(--text-color);
+}
+
+
+#login-message {
+    margin-top: 1rem;
+
+    color: var(--danger);
+
+    font-weight: bold;
+}
+
+
+.back-link {
+    display: inline-block;
+
+    margin-top: 1.5rem;
+
+    color: var(--primary-color);
+
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   ADMIN HEADER
+===================================================== */
+
+.admin-header {
+    background-color: var(--primary-color);
+
+    color: var(--white);
+
+    padding: 1rem 5%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+
+.admin-header h1 {
+    margin-bottom: 0.2rem;
+}
+
+
+.admin-header nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+}
+
+
+.admin-header a {
+    color: var(--white);
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+.admin-header button {
+    border: none;
+
+    padding: 0.6rem 1rem;
+
+    border-radius: 8px;
+
+    background-color: var(--accent-color);
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.admin-main {
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 2rem auto;
+}
+
+
+.dashboard-section {
+    background-color: var(--white);
+
+    padding: 1.5rem;
+
+    margin-bottom: 2rem;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+
+.dashboard-section h2 {
+    margin-bottom: 1rem;
+
+    color: var(--primary-color);
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+}
+
+
+.stat-card {
+    padding: 1.2rem;
+
+    border-radius: 10px;
+
+    background-color: #f8faf8;
+
+    border-left: 5px solid var(--primary-color);
+}
+
+
+.stat-card h3 {
+    font-size: 1rem;
+
+    color: #666;
+}
+
+
+.stat-card p {
+    font-size: 1.5rem;
+
+    font-weight: bold;
+
+    color: var(--primary-color);
+
+    margin-top: 0.4rem;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1rem;
+}
+
+
+.status-card {
+    padding: 1rem;
+
+    border-radius: 8px;
+
+    background-color: #f8faf8;
+
+    text-align: center;
+}
+
+
+.status-card strong {
+    display: block;
+
+    font-size: 1.5rem;
+
+    color: var(--primary-color);
+}
+
+
+/* =====================================================
+   TOP SELLING
+===================================================== */
+
+.top-dish {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0.8rem;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.top-dish:last-child {
+    border-bottom: none;
+}
+
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.section-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+}
+
+
+.section-header button {
+    padding: 0.7rem 1rem;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: var(--primary-color);
+
+    color: var(--white);
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+#menu-search {
+    width: 100%;
+
+    padding: 0.8rem;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    margin-bottom: 1rem;
+
+    font-size: 1rem;
+}
+
+
+/* =====================================================
+   MENU LIST
+===================================================== */
+
+.admin-menu-list {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+}
+
+
+.admin-dish-card {
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 1rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+
+.admin-dish-card h3 {
+    color: var(--primary-color);
+}
+
+
+.admin-dish-card img {
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+
+.dish-actions {
+    display: flex;
+
+    gap: 0.5rem;
+
+    flex-wrap: wrap;
+
+    margin-top: 0.5rem;
+}
+
+
+.dish-actions button {
+    padding: 0.6rem 0.8rem;
+
+    border: none;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+
+.edit-button {
+    background-color: var(--accent-color);
+}
+
+
+.delete-button {
+    background-color: var(--danger);
+
+    color: var(--white);
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+#dish-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.6rem;
+}
+
+
+#dish-form input,
+#dish-form textarea,
+#dish-form select {
+    padding: 0.8rem;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    font-size: 1rem;
+
+    font-family: inherit;
+}
+
+
+#dish-form input:focus,
+#dish-form textarea:focus,
+#dish-form select:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+
+.form-buttons {
+    display: flex;
+
+    gap: 0.7rem;
+
+    margin-top: 0.7rem;
+}
+
+
+.form-buttons button {
+    padding: 0.7rem 1rem;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: var(--primary-color);
+
+    color: var(--white);
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+.secondary-button {
+    background-color: #777 !important;
+}
+
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+.order-admin-card {
+    border: 1px solid var(--border);
+
+    padding: 1rem;
+
+    border-radius: 10px;
+
+    margin-bottom: 1rem;
+}
+
+
+.order-admin-card h3 {
+    color: var(--primary-color);
+
+    margin-bottom: 0.5rem;
+}
+
+
+.order-admin-card ul {
+    margin-left: 1.5rem;
+
+    margin-top: 0.5rem;
+}
+
+
+.order-controls {
+    display: flex;
+
+    gap: 0.6rem;
+
+    flex-wrap: wrap;
+
+    margin-top: 1rem;
+}
+
+
+.order-controls select {
+    padding: 0.6rem;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+}
+
+
+.order-controls button {
+    padding: 0.6rem 0.8rem;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: var(--danger);
+
+    color: var(--white);
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.admin-empty {
+    text-align: center;
+
+    padding: 1.5rem;
+
+    color: #666;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (min-width: 600px) {
+
+    .admin-header {
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        align-items: center;
+    }
+
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .admin-menu-list {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (min-width: 900px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+
+    .admin-menu-list {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}

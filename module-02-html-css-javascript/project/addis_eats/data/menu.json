@@ -1,0 +1,174 @@
+[
+    {
+        "id": 1,
+        "name": "Shiro",
+        "description": "Traditional Ethiopian chickpea stew served with injera.",
+        "price": 150,
+        "category": "ethiopian",
+        "image": "images/Shiro.png",
+        "ingredients": [
+            "Chickpeas",
+            "Berbere",
+            "Onions",
+            "Garlic",
+            "Oil",
+            "Injera"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Beyaynet",
+        "description": "A colorful Ethiopian combination platter served with injera.",
+        "price": 250,
+        "category": "ethiopian",
+        "image": "images/beyeaynet.png",
+        "ingredients": [
+            "Injera",
+            "Shiro",
+            "Vegetables",
+            "Lentils"
+        ]
+    },
+    {
+    "id": 3,
+    "name": "Doro Wet",
+    "description": "Spicy Ethiopian chicken stew prepared with berbere and served with injera.",
+    "price": 450,
+    "category": "ethiopian",
+    "image": "images/Dorro-Wet.png",
+    "ingredients": [
+        "Chicken",
+        "Berbere",
+        "Onions",
+        "Garlic",
+        "Ginger",
+        "Injera"
+    ]
+},
+{
+    "id": 4,
+    "name": "Firfir",
+    "description": "Traditional Ethiopian dish made with pieces of injera mixed with spicy sauce.",
+    "price": 300,
+    "category": "ethiopian",
+    "image": "images/Firfir.png",
+    "ingredients": [
+        "Injera",
+        "Berbere",
+        "Onions",
+        "Tomato",
+        "Oil"
+    ]
+},
+{
+    "id": 5,
+    "name": "Shekila Tibs",
+    "description": "Sizzling Ethiopian beef pieces cooked with onions, peppers and traditional spices.",
+    "price": 500,
+    "category": "ethiopian",
+    "image": "images/shekila Tibs.png",
+    "ingredients": [
+        "Beef",
+        "Onions",
+        "Green Pepper",
+        "Garlic",
+        "Spices"
+    ]
+},
+{
+    "id": 6,
+    "name": "Dulet",
+    "description": "Traditional Ethiopian dish made with finely chopped meat, spices and herbs.",
+    "price": 520,
+    "category": "ethiopian",
+    "image": "images/dulet.png",
+    "ingredients": [
+        "Beef",
+        "Liver",
+        "Onions",
+        "Garlic",
+        "Chili",
+        "Spices"
+    ]
+},
+{
+    "id": 7,
+    "name": "Kitfo",
+    "description": "Minced Ethiopian beef seasoned with mitmita and traditional spiced butter.",
+    "price": 470,
+    "category": "ethiopian",
+    "image": "images/Kitfo.png",
+    "ingredients": [
+        "Beef",
+        "Mitmita",
+        "Spiced Butter",
+        "Ayib"
+    ]
+},
+{
+    "id": 8,
+    "name": "Burger",
+    "description": "Juicy beef burger served with fresh vegetables and a soft bun.",
+    "price": 360,
+    "category": "burgers",
+    "image": "images/burger.png",
+    "ingredients": [
+        "Beef Patty",
+        "Bun",
+        "Lettuce",
+        "Tomato",
+        "Onion",
+        "Cheese"
+    ]
+},
+{
+    "id": 9,
+    "name": "Pizza",
+    "description": "Freshly baked pizza topped with cheese, tomato sauce and delicious toppings.",
+    "price": 600,
+    "category": "pizza",
+    "image": "images/pizza.png",
+    "ingredients": [
+        "Pizza Dough",
+        "Tomato Sauce",
+        "Cheese",
+        "Vegetables"
+    ]
+},
+{
+    "id": 10,
+    "name": "Water",
+    "description": "Cold bottled drinking water.",
+    "price": 50,
+    "category": "drinks",
+    "image": "images/water.png",
+    "ingredients": [
+        "Water"
+    ]
+},
+{
+    "id": 11,
+    "name": "Coca-Cola",
+    "description": "Refreshing chilled Coca-Cola soft drink.",
+    "price": 60,
+    "category": "drinks",
+    "image": "images/coca.png",
+    "ingredients": [
+        "Carbonated Water",
+        "Sugar"
+    ]
+},
+{
+    "id": 12,
+    "name": "Fanta",
+    "description": "Refreshing orange-flavored carbonated soft drink.",
+    "price": 50,
+    "category": "drinks",
+    "image": "images/fanta.png",
+    "ingredients": [
+        "Carbonated Water",
+        "Sugar",
+        "Orange Flavor"
+    ]
+}
+]
