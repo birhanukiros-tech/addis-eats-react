@@ -32,7 +32,6 @@ loginForm.addEventListener("submit", function (event) {
 
         sessionStorage.setItem("adminLoggedIn", "true");
 
-
         // Go to dashboard
 
         window.location.href = "admin-dashboard.html";

@@ -41,7 +41,6 @@
 
 </header>
 
-
 <main class="admin-main">
 
 
@@ -59,10 +58,8 @@
 
                 <h3>Total Revenue</h3>
 
-                <p id="total-revenue">
-                    0 ETB
-                </p>
-
+                <p id="total-revenue">0 ETB</p>
+                
             </article>
 
 
@@ -76,17 +73,13 @@
 
             </article>
 
-
             <article class="stat-card">
 
                 <h3>Average Order</h3>
 
-                <p id="average-order">
-                    0 ETB
-                </p>
+                <p id="average-order">0 ETB</p>
 
             </article>
-
 
             <article class="stat-card">
 
@@ -102,8 +95,6 @@
 
     </section>
 
-
-
     <!-- =================================================
          ORDER ANALYTICS
     ================================================== -->
@@ -112,13 +103,8 @@
 
         <h2>Order Status Distribution</h2>
 
-        <div id="status-distribution"
-             class="status-grid">
-        </div>
-
+        <div id="status-distribution" class="status-grid"></div>
     </section>
-
-
 
     <!-- =================================================
          TOP SELLING DISHES
@@ -132,9 +118,6 @@
         </div>
 
     </section>
-
-
-
     <!-- =================================================
          MENU MANAGEMENT
     ================================================== -->
@@ -154,55 +137,29 @@
 
         </div>
 
+        <input type="search" id="menu-search" placeholder="Search dishes...">
 
-        <input
-            type="search"
-            id="menu-search"
-            placeholder="Search dishes..."
-        >
-
-
-        <div id="menu-list"
-             class="admin-menu-list">
-        </div>
+        <div id="menu-list" class="admin-menu-list"></div>
 
     </section>
-
-
-
     <!-- =================================================
          ADD / EDIT DISH FORM
     ================================================== -->
 
-    <section
-        id="dish-form-section"
-        class="dashboard-section"
-        hidden
-    >
+    <section id="dish-form-section" class="dashboard-section"hidden>
 
-        <h2 id="dish-form-title">
-            Add New Dish
-        </h2>
-
+        <h2 id="dish-form-title">Add New Dish</h2>
 
         <form id="dish-form">
 
-            <input
-                type="hidden"
-                id="dish-id"
-            >
+        <input type="hidden" id="dish-id">
 
-
-            <label for="dish-name">
-                Dish Name
-            </label>
-
+            <label for="dish-name">Dish Name</label>
             <input
                 type="text"
                 id="dish-name"
                 required
             >
-
 
             <label for="dish-description">
                 Description
@@ -213,55 +170,24 @@
                 rows="3"
                 required
             ></textarea>
-
-
-            <label for="dish-price">
-                Price (ETB)
-            </label>
-
-            <input
-                type="number"
-                id="dish-price"
-                min="1"
-                required
-            >
-
-
-            <label for="dish-category">
-                Category
-            </label>
+            <label for="dish-price"> Price (ETB)</label>
+            <input type="number" id="dish-price" min="1" required>
+            <label for="dish-category">Category</label>
 
             <select id="dish-category" required>
 
-                <option value="ethiopian">
-                    Ethiopian
-                </option>
+                <option value="ethiopian">Ethiopian</option>
 
-                <option value="pizza">
-                    Pizza
-                </option>
+                <option value="pizza"> Pizza</option>
 
-                <option value="burgers">
-                    Burgers
-                </option>
+                <option value="burgers">Burgers</option>
 
-                <option value="drinks">
-                    Drinks
-                </option>
+                <option value="drinks">Drinks</option>
 
             </select>
+            <label for="dish-image">Image Path</label>
 
-
-            <label for="dish-image">
-                Image Path
-            </label>
-
-            <input
-                type="text"
-                id="dish-image"
-                placeholder="images/burger.png"
-                required
-            >
+            <input type="text" id="dish-image" placeholder="images/burger.png"required>
 
 
             <label for="dish-ingredients">

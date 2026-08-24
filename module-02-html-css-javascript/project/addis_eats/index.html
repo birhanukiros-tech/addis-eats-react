@@ -31,13 +31,8 @@
             <label for="search-input">Search dishes</label>
 
             <div class="search-row">
-                <input
-                    type="search"
-                    id="search-input"
-                    placeholder="Search for a dish..."
-                    autocomplete="off"
-                >
-
+                <input type="search" id="search-input" placeholder="Search for a dish..."autocomplete="off">
+                
                 <button type="submit">Search</button>
             </div>
         </form>
@@ -49,69 +44,69 @@
         <h2>Categories</h2>
 
         <div id="category-buttons" class="category-buttons">
-            <button type="button" data-category="all" class="active">
-                All
-            </button>
+            <button type="button" data-category="all" class="active">All</button>
 
-            <button type="button" data-category="ethiopian">
-                Ethiopian
-            </button>
+            <button type="button" data-category="ethiopian"> Ethiopian</button>
 
-            <button type="button" data-category="pizza">
-                Pizza
-            </button>
+            <button type="button" data-category="pizza">Pizza</button>
 
-            <button type="button" data-category="burgers">
-                Burgers
-            </button>
+            <button type="button" data-category="burgers">Burgers</button>
 
-            <button type="button" data-category="drinks">
-                Drinks
-            </button>
+            <button type="button" data-category="drinks">Drinks</button>
         </div>
     </section>
-
 
     <!-- MENU -->
     <section id="menu" aria-label="Food menu">
         <h2>Our Menu</h2>
 
-        <p id="loading-message">
-            Loading menu...
-        </p>
+        <p id="loading-message">Loading menu..</p>
 
-        <p id="menu-empty" hidden>
-            No dishes found.
-        </p>
+        <p id="menu-empty" hidden> No dishes found.</p>
 
-        <p id="menu-error" hidden>
-            Sorry, we couldn't load the menu.
-        </p>
+        <p id="menu-error" hidden>Sorry, we couldn't load the menu.</p>
 
         <div id="menu-list"></div>
     </section>
 
-
     <!-- CART -->
-    <section id="cart" aria-label="Shopping cart">
+    
+<section id="cart" aria-label="Shopping cart">
 
-        <h2>🛒 Your Cart</h2>
+    <div class="section-heading">
+        <div>
+            <p class="section-label">YOUR ORDER</p>
+            <h2>🛒 Your Cart</h2>
+        </div>
 
-        <div id="cart-list"></div>
+        <span id="cart-count" class="cart-count">0 items</span>
+    </div>
 
-        <p>
-            Total:
-            <span id="cart-total">0 ETB</span>
-        </p>
+    <div id="cart-list"></div>
 
-        <button
-            type="button"
-            id="checkout-button">
-            Checkout
-        </button>
+    <div class="cart-summary">
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="cart-total">0 ETB</strong>
+        </div>
 
-    </section>
+        <div class="summary-divider"></div>
 
+        <div class="summary-row total-row">
+            <span>Total</span>
+            <strong id="cart-grand-total">0 ETB</strong>
+        </div>
+    </div>
+
+    <button type="button" id="checkout-button">Proceed to Checkout →</button>
+
+</section>
+
+<!-- ADD TO CART POPUP -->
+<div id="cart-toast" class="cart-toast" aria-live="polite">
+    <span class="toast-icon">✓</span>
+    <span id="toast-message">Added to cart</span>
+</div>
 
     <!-- CHECKOUT -->
     <section id="checkout" hidden>
@@ -122,33 +117,15 @@
 
             <label for="customer-name">Name</label>
 
-            <input
-                type="text"
-                id="customer-name"
-                placeholder="Enter your name"
-                required
-            >
-
+            <input type="text" id="customer-name" placeholder="Enter your name" required>
 
             <label for="customer-phone">Phone</label>
 
-            <input
-                type="tel"
-                id="customer-phone"
-                placeholder="09XXXXXXXX or +2519XXXXXXXX"
-                required
-            >
-
+            <input type="tel" id="customer-phone" placeholder="09XXXXXXXX or +2519XXXXXXXX" required>
 
             <label for="delivery-area">Delivery Area</label>
 
-            <input
-                type="text"
-                id="delivery-area"
-                placeholder="Enter your delivery area"
-                required
-            >
-
+            <input type="text" id="delivery-area" placeholder="Delivary area" required>
 
             <label for="payment-method">Payment Method</label>
 
@@ -158,28 +135,16 @@
                 <option value="Cash on Delivery">Cash on Delivery</option>
             </select>
 
+            <label for="special-instructions">Special Instructions</label>
 
-            <label for="special-instructions">
-                Special Instructions
-            </label>
+            <textarea id="special-instructions" placeholder="Example: No onions, extra sauce..." rows="4"></textarea>
 
-            <textarea
-                id="special-instructions"
-                placeholder="Example: No onions, extra sauce..."
-                rows="4"
-            ></textarea>
-
-
-            <button type="submit">
-                Place Order
-            </button>
-
+            <button type="submit">Place Order</button>
         </form>
 
         <p id="checkout-message"></p>
 
     </section>
-
 
     <!-- ORDER CONFIRMATION -->
     <section
@@ -189,9 +154,7 @@
 
         <h2>🎉 Order Confirmed!</h2>
 
-        <p id="confirmation-message">
-            Thank you for your order.
-        </p>
+        <p id="confirmation-message">Thank you for your order.</p>
 
     </section>
 
@@ -206,12 +169,10 @@
 
 </main>
 
-
 <footer>
     <p>&copy; 2026 Addis Eats. All rights are reserved.</p>
     <p>Fresh food, delivered in Addis Ababa.</p>
 </footer>
-
 
 <script src="app.js"></script>
 
