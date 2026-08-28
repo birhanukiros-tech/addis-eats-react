@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form - Validated & Persistent</title>
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 480px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #718096;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        /* Stats */
+        .stats {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .stats-label {
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .stats-count {
+            background: #667eea;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 18px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        label .required {
+            color: #e53e3e;
+            margin-left: 2px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        input::placeholder {
+            color: #a0aec0;
+        }
+
+        .hint {
+            display: block;
+            margin-top: 4px;
+            color: #718096;
+            font-size: 12px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Error Area */
+        .error-area {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            min-height: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .error-area.error {
+            background: #fff5f5;
+            color: #c53030;
+            border-left: 4px solid #fc8181;
+        }
+
+        .error-area.success {
+            background: #f0fff4;
+            color: #276749;
+            border-left: 4px solid #68d391;
+        }
+
+        /* Entries List */
+        .entries-section {
+            margin-top: 30px;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        .entries-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .entries-title {
+            color: #2d3748;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .clear-btn {
+            background: #fc8181;
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .clear-btn:hover {
+            background: #e53e3e;
+        }
+
+        .entries-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .entry-item {
+            background: #f7fafc;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .entry-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .entry-phone {
+            color: #718096;
+            font-family: monospace;
+        }
+
+        .entry-time {
+            color: #a0aec0;
+            font-size: 11px;
+        }
+
+        .no-entries {
+            color: #a0aec0;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 520px) {
+            .container {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            input {
+                font-size: 14px;
+                padding: 10px 14px;
+            }
+
+            .entry-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Sign Up</h1>
+        <p class="subtitle">Join our community with a valid Ethiopian phone number</p>
+
+        <!-- Stats -->
+        <div class="stats">
+            <span class="stats-label">Total Signups</span>
+            <span class="stats-count" id="signupCount">0</span>
+        </div>
+
+        <!-- Form -->
+        <form id="signupForm" novalidate>
+            <div class="form-group">
+                <label for="name">
+                    Full Name
+                    <span class="required">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name"
+                    placeholder="e.g., Birhanu Kiros"
+                    required
+                    autocomplete="name"
+                >
+                <span class="hint">Minimum 2 characters</span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">
+                    Phone Number
+                    <span class="required">*</span>
+                </label>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone"
+                    placeholder="0912345678 or +251912345678"
+                    required
+                    autocomplete="tel"
+                >
+                <span class="hint">Format: 0912345678 or +251912345678</span>
+            </div>
+
+            <button type="submit" class="submit-btn">Sign Up</button>
+
+            <!-- Error Area -->
+            <div id="errorArea" class="error-area" role="alert"></div>
+        </form>
+
+        <!-- Entries List -->
+        <div class="entries-section" id="entriesSection">
+            <div class="entries-header">
+                <span class="entries-title">Recent Signups</span>
+                <button class="clear-btn" id="clearEntries">Clear All</button>
+            </div>
+            <div class="entries-list" id="entriesList">
+                <div class="no-entries">No signups yet</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
