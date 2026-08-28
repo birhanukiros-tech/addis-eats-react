@@ -1,0 +1,414 @@
+/* ============================================
+   Base Styles
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 4px;
+}
+
+header .subtitle {
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   Status Line
+   ============================================ */
+
+.status {
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f7fafc;
+    border-left: 4px solid #a0aec0;
+    transition: all 0.3s ease;
+}
+
+.status.loading {
+    border-left-color: #ed8936;
+    background: #fffbeb;
+}
+
+.status.loading .status-icon {
+    animation: spin 1s linear infinite;
+}
+
+.status.success {
+    border-left-color: #48bb78;
+    background: #f0fff4;
+}
+
+.status.error {
+    border-left-color: #fc8181;
+    background: #fff5f5;
+}
+
+.status-icon {
+    font-size: 1.1rem;
+}
+
+.status-text {
+    flex: 1;
+    font-size: 0.95rem;
+    color: #2d3748;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Sections
+   ============================================ */
+
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    font-size: 1.2rem;
+    color: #2d3748;
+    margin-bottom: 15px;
+}
+
+/* ============================================
+   Forms
+   ============================================ */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.convert-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+}
+
+.convert-form .form-group {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5a67d8;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e0;
+}
+
+.btn-danger {
+    background: #fc8181;
+    color: white;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    height: 30px;
+}
+
+.btn-danger:hover {
+    background: #e53e3e;
+}
+
+/* ============================================
+   Result
+   ============================================ */
+
+.result {
+    margin-top: 15px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    background: #ebf8ff;
+    border: 1px solid #bee3f8;
+    display: none;
+    font-size: 1.05rem;
+}
+
+.result.show {
+    display: block;
+}
+
+.result .result-amount {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #2b6cb0;
+}
+
+.result .result-rate {
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.result.error-result {
+    background: #fff5f5;
+    border-color: #fed7d7;
+    color: #c53030;
+}
+
+/* ============================================
+   Watchlist
+   ============================================ */
+
+.watchlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.watchlist-count {
+    background: #e2e8f0;
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #4a5568;
+}
+
+.add-watchlist {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.add-watchlist select {
+    flex: 1;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.add-watchlist select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.add-watchlist select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.add-watchlist .btn {
+    white-space: nowrap;
+}
+
+/* Watchlist Items */
+.watchlist {
+    list-style: none;
+    min-height: 60px;
+}
+
+.watchlist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f7fafc;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.watchlist-item:hover {
+    border-color: #e2e8f0;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.watchlist-item .currency-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.watchlist-item .currency-code {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #2d3748;
+    min-width: 50px;
+}
+
+.watchlist-item .currency-name {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.watchlist-item .currency-rate {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 0.95rem;
+}
+
+.watchlist-empty {
+    text-align: center;
+    color: #a0aec0;
+    padding: 30px 0;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .convert-form {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .convert-form .form-group {
+        margin-bottom: 10px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .add-watchlist {
+        flex-direction: column;
+    }
+
+    .watchlist-item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .watchlist-item .currency-rate {
+        font-size: 0.85rem;
+    }
+}
