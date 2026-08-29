@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form - Ethiopia</title>
+  
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>📝 Sign Up</h1>
+            <p class="subtitle">Join our community</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats">
+            <span class="stats-label">Total Signups</span>
+            <span class="stats-count" id="signupCount">0</span>
+        </div>
+
+        <!-- Signup Form -->
+        <form id="signupForm" novalidate>
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">
+                    Full Name
+                    <span class="required">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name"
+                    placeholder="e.g., Abebe Kebede"
+                    required
+                    autocomplete="name"
+                    aria-describedby="nameHelp"
+                >
+                <span id="nameHelp" class="hint">Minimum 2 characters</span>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="form-group">
+                <label for="phone">
+                    Phone Number
+                    <span class="required">*</span>
+                </label>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone"
+                    placeholder="0912345678 or +251912345678"
+                    required
+                    autocomplete="tel"
+                    aria-describedby="phoneHelp"
+                >
+                <span id="phoneHelp" class="hint">Format: 0912345678 or +251912345678</span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Sign Up</button>
+
+            <!-- Error Area -->
+            <div id="errorArea" class="error-area" role="alert"></div>
+        </form>
+
+        <!-- Recent Signups -->
+        <div class="recent-section" id="recentSection">
+            <div class="recent-header">
+                <h2>Recent Signups</h2>
+                <button class="clear-btn" id="clearEntries" title="Clear all signups">
+                    🗑️ Clear All
+                </button>
+            </div>
+            <div class="entries-list" id="entriesList">
+                <div class="no-entries">No signups yet. Be the first! 🎉</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Your data is stored locally in your browser</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
