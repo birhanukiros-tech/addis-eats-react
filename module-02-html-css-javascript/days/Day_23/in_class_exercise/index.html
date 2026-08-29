@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Eats - Food Delivery Addis Ababa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ============================================
+    HEADER / NAVIGATION
+    ============================================ -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <span class="logo-icon">🍽️</span>
+                    <span class="logo-text">Addis Eats</span>
+                </div>
+                <div class="nav-actions">
+                    <button class="cart-btn" id="cartToggle">
+                        🛒 <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="theme-btn" id="themeToggle">🌙</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================
+    HERO SECTION
+    ============================================ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover the Best Food in Addis Ababa</h1>
+                <p>Explore top restaurants, cafes, and local favorites across the city</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+    MAIN CONTENT
+    ============================================ -->
+    <main class="main" id="main">
+        <div class="container">
+            <!-- Search & Filter Section -->
+            <section class="search-section" id="searchSection">
+                <div class="search-bar">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search restaurants, cuisines, or dishes..."
+                        class="search-input"
+                    >
+                    <button id="searchBtn" class="search-btn">🔍</button>
+                </div>
+                
+                <div class="filters" id="filters">
+                    <label for="cuisineFilter">Filter</label>
+                    <select id="cuisineFilter" class="filter-select">
+                        <option value="">All Cuisines</option>
+                    </select>
+                    <label for="priceFilter">Price filter</label>
+                    <select id="priceFilter" class="filter-select">
+                        <option value="">All Prices</option>
+                        <option value="budget">💰 Budget</option>
+                        <option value="moderate">💰💰 Moderate</option>
+                        <option value="premium">💰💰💰 Premium</option>
+                    </select>
+                    <label for="ratingFilter">rating filter</label>
+                    <select id="ratingFilter" class="filter-select">
+                        <option value="">All Ratings</option>
+                        <option value="4.5">⭐ 4.5+</option>
+                        <option value="4.0">⭐ 4.0+</option>
+                        <option value="3.5">⭐ 3.5+</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Results Stats -->
+            <div class="results-stats" id="resultsStats">
+                Showing <span id="resultCount">0</span> restaurants
+            </div>
+
+            <!-- Restaurant Grid -->
+            <div id="restaurantsGrid" class="restaurants-grid"></div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="state loading-state">
+                <div class="spinner"></div>
+                <p>Loading delicious restaurants...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="state error-state" style="display: none;">
+                <span class="state-icon">😅</span>
+                <h3>Oops! Something went wrong</h3>
+                <p id="errorMessage">Failed to load restaurants</p>
+                <button id="retryBtn" class="btn btn-primary">Retry</button>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="state empty-state" style="display: none;">
+                <span class="state-icon">🔍</span>
+                <h3>No restaurants found</h3>
+                <p>Try adjusting your search or filters</p>
+                <button id="clearFiltersBtn" class="btn btn-secondary">Clear Filters</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================
+    CART SIDEBAR
+    ============================================ -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>🛒 Your Cart</h2>
+            <button id="closeCart" class="close-cart">✕</button>
+        </div>
+        <div id="cartBody" class="cart-body">
+            <div class="cart-empty">
+                <span>🛒</span>
+                <p>Your cart is empty</p>
+                <p class="cart-hint">Add items from restaurants to get started</p>
+            </div>
+        </div>
+        <div id="cartFooter" class="cart-footer" style="display: none;">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">0 ETB</span>
+            </div>
+            <button class="btn btn-primary checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- ============================================
+    FOOTER
+    ============================================ -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>🍽️ Addis Eats</h3>
+                    <p>Discover the best food in Addis Ababa</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Addis Eats. Made with ❤️ in Addis Ababa</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

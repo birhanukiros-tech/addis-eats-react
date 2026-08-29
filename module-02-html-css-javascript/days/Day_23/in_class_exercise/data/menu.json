@@ -1,0 +1,114 @@
+{
+    "restaurants": [
+        {
+            "id": 1,
+            "name": "Yod Abyssinia",
+            "cuisine": "Ethiopian",
+            "price": "moderate",
+            "rating": 4.8,
+            "image": "https://images.unsplash.com/photo-1600783246026-4e3f4c3e0c8b?w=400&h=300&fit=crop",
+            "description": "Traditional Ethiopian cuisine with live cultural performances",
+            "dishes": ["Kitfo", "Doro Wot", "Tibs", "Injera"],
+            "featured": true
+        },
+        {
+            "id": 2,
+            "name": "Kaldi's Coffee",
+            "cuisine": "Cafe",
+            "price": "budget",
+            "rating": 4.5,
+            "image": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop",
+            "description": "Premium Ethiopian coffee and pastries",
+            "dishes": ["Ethiopian Coffee", "Croissant", "Sandwiches", "Cake"],
+            "featured": true
+        },
+        {
+            "id": 3,
+            "name": "Sapore Italian",
+            "cuisine": "Italian",
+            "price": "premium",
+            "rating": 4.7,
+            "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+            "description": "Authentic Italian cuisine in a romantic setting",
+            "dishes": ["Pasta", "Pizza", "Tiramisu", "Lasagna"],
+            "featured": false
+        },
+        {
+            "id": 4,
+            "name": "Beijing Restaurant",
+            "cuisine": "Chinese",
+            "price": "moderate",
+            "rating": 4.3,
+            "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+            "description": "Authentic Chinese cuisine with a modern twist",
+            "dishes": ["Dumplings", "Kung Pao Chicken", "Fried Rice", "Spring Rolls"],
+            "featured": false
+        },
+        {
+            "id": 5,
+            "name": "Totot Restaurant",
+            "cuisine": "Ethiopian",
+            "price": "budget",
+            "rating": 4.4,
+            "image": "https://images.unsplash.com/photo-1600783246026-4e3f4c3e0c8b?w=400&h=300&fit=crop",
+            "description": "Popular local spot for authentic Ethiopian dishes",
+            "dishes": ["Shiro", "Gomen", "Alicha", "Kitfo"],
+            "featured": false
+        },
+        {
+            "id": 6,
+            "name": "Fusion Lounge",
+            "cuisine": "International",
+            "price": "premium",
+            "rating": 4.9,
+            "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+            "description": "Fusion cuisine with panoramic city views",
+            "dishes": ["Tuna Tartare", "Steak", "Risotto", "Crème Brûlée"],
+            "featured": true
+        },
+        {
+            "id": 7,
+            "name": "Garden Cafe",
+            "cuisine": "Cafe",
+            "price": "moderate",
+            "rating": 4.2,
+            "image": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop",
+            "description": "Peaceful garden cafe with great coffee and snacks",
+            "dishes": ["Coffee", "Pastries", "Salads", "Smoothies"],
+            "featured": false
+        },
+        {
+            "id": 8,
+            "name": "Spice House",
+            "cuisine": "Indian",
+            "price": "moderate",
+            "rating": 4.5,
+            "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+            "description": "Authentic Indian curries and tandoori specialties",
+            "dishes": ["Butter Chicken", "Naan", "Biryani", "Tikka Masala"],
+            "featured": false
+        },
+        {
+            "id": 9,
+            "name": "Mama's Kitchen",
+            "cuisine": "Ethiopian",
+            "price": "budget",
+            "rating": 4.3,
+            "image": "https://images.unsplash.com/photo-1600783246026-4e3f4c3e0c8b?w=400&h=300&fit=crop",
+            "description": "Homestyle Ethiopian cooking like grandma used to make",
+            "dishes": ["Beyaynetu", "Misir Wot", "Kik Alicha", "Atakilt"],
+            "featured": false
+        },
+        {
+            "id": 10,
+            "name": "Abyssinia 2000",
+            "cuisine": "Ethiopian",
+            "price": "premium",
+            "rating": 4.6,
+            "image": "https://images.unsplash.com/photo-1600783246026-4e3f4c3e0c8b?w=400&h=300&fit=crop",
+            "description": "Fine dining with traditional Ethiopian flavors",
+            "dishes": ["Special Kitfo", "Doro Wot", "Firfir", "Tibs"],
+            "featured": true
+        }
+    ]
+}
