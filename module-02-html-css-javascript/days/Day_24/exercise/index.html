@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Eats - Food Delivery Addis Ababa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ============================================
+    HEADER
+    ============================================ -->
+    <header class="header" role="banner">
+        <div class="container">
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <div class="logo">
+                    <span class="logo-icon" aria-hidden="true">🍽️</span>
+                    <span class="logo-text">Addis Eats</span>
+                </div>
+                <div class="nav-actions">
+                    <button 
+                        class="cart-btn" 
+                        id="cartToggle" 
+                        aria-label="Open shopping cart"
+                        aria-expanded="false"
+                    >
+                        🛒 
+                        <span class="cart-count" id="cartCount" aria-label="Cart items count">0</span>
+                    </button>
+                    <button 
+                        class="theme-btn" 
+                        id="themeToggle" 
+                        aria-label="Toggle dark mode"
+                    >
+                        🌙
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================
+    HERO
+    ============================================ -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+            <h1 id="hero-title">Discover the Best Food in Addis Ababa</h1>
+            <p>Explore top restaurants across the city</p>
+        </div>
+    </section>
+
+    <!-- ============================================
+    MAIN CONTENT
+    ============================================ -->
+    <main class="main" role="main">
+        <div class="container">
+            <!-- Search & Filter Section -->
+            <section class="search-section" aria-labelledby="search-title">
+                <h2 id="search-title" class="visually-hidden">Search and Filter Restaurants</h2>
+                
+                <div class="search-bar">
+                    <label for="searchInput" class="visually-hidden">Search restaurants</label>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search restaurants, cuisines, or dishes..."
+                        class="search-input"
+                        aria-describedby="search-help"
+                    >
+                    <button id="searchBtn" class="search-btn" aria-label="Search">🔍</button>
+                </div>
+                <span id="search-help" class="visually-hidden">Type to filter restaurants by name, cuisine, or dish</span>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="cuisineFilter" class="visually-hidden">Filter by cuisine</label>
+                        <select id="cuisineFilter" class="filter-select" aria-label="Filter by cuisine">
+                            <option value="">All Cuisines</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="priceFilter" class="visually-hidden">Filter by price</label>
+                        <select id="priceFilter" class="filter-select" aria-label="Filter by price">
+                            <option value="">All Prices</option>
+                            <option value="budget">💰 Budget</option>
+                            <option value="moderate">💰💰 Moderate</option>
+                            <option value="premium">💰💰💰 Premium</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="ratingFilter" class="visually-hidden">Filter by rating</label>
+                        <select id="ratingFilter" class="filter-select" aria-label="Filter by rating">
+                            <option value="">All Ratings</option>
+                            <option value="4.5">⭐ 4.5+</option>
+                            <option value="4.0">⭐ 4.0+</option>
+                            <option value="3.5">⭐ 3.5+</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Stats -->
+            <div class="results-stats" role="status" aria-live="polite">
+                Showing <span id="resultCount">0</span> restaurants
+            </div>
+
+            <!-- Restaurant Grid -->
+            <section aria-labelledby="restaurants-title">
+                <h2 id="restaurants-title" class="visually-hidden">Restaurants</h2>
+                <div id="restaurantsGrid" class="restaurants-grid" role="list"></div>
+            </section>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="state" role="status">
+                <div class="spinner" aria-hidden="true"></div>
+                <p>Loading restaurants...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="state" style="display: none;" role="alert">
+                <span class="state-icon" aria-hidden="true">😅</span>
+                <h3>Oops! Something went wrong</h3>
+                <p id="errorMessage">Failed to load restaurants</p>
+                <button id="retryBtn" class="btn btn-primary">Retry</button>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="state" style="display: none;" role="status">
+                <span class="state-icon" aria-hidden="true">🔍</span>
+                <h3>No restaurants found</h3>
+                <p>Try adjusting your search or filters</p>
+                <button id="clearFiltersBtn" class="btn btn-secondary">Clear Filters</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================
+    CART SIDEBAR WITH CHECKOUT FORM
+    ============================================ -->
+    <div id="cartOverlay" class="cart-overlay" role="presentation"></div>
+    
+    <aside id="cartSidebar" class="cart-sidebar" role="dialog" aria-labelledby="cart-title" aria-modal="true">
+        <div class="cart-header">
+            <h2 id="cart-title">🛒 Your Cart</h2>
+            <button id="closeCart" class="close-cart" aria-label="Close cart">✕</button>
+        </div>
+        
+        <div id="cartBody" class="cart-body" role="list">
+            <div class="cart-empty">
+                <span aria-hidden="true">🛒</span>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        
+        <!-- CHECKOUT FORM (Step 2) -->
+        <div id="checkoutForm" class="checkout-form" style="display: none;">
+            <h3>Checkout</h3>
+            
+            <!-- ERROR REGION (Step 2) -->
+            <div id="checkoutError" class="checkout-error" role="alert"></div>
+            
+            <div class="form-group">
+                <label for="customerName">Full Name</label>
+                <input 
+                    type="text" 
+                    id="customerName" 
+                    placeholder="Enter your full name"
+                    required
+                >
+                <span class="form-hint">Minimum 2 characters</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="customerPhone">Phone Number</label>
+                <input 
+                    type="tel" 
+                    id="customerPhone" 
+                    placeholder="0912345678 or +251912345678"
+                    required
+                >
+                <span class="form-hint">Format: 0912345678 or +251912345678</span>
+            </div>
+            
+            <button id="placeOrderBtn" class="btn btn-primary checkout-btn">Place Order</button>
+        </div>
+        
+        <div id="cartFooter" class="cart-footer" style="display: none;">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">0 ETB</span>
+            </div>
+            <button id="checkoutBtn" class="btn btn-primary checkout-btn">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- ============================================
+    ORDER CONFIRMATION MODAL
+    ============================================ -->
+    <div id="confirmationModal" class="confirmation-modal" style="display: none;">
+        <div class="confirmation-content">
+            <span class="confirmation-icon">✅</span>
+            <h2>Order Confirmed!</h2>
+            <p id="confirmationMessage">Thank you for your order!</p>
+            <div class="order-details" id="orderDetails"></div>
+            <button id="closeConfirmation" class="btn btn-primary">OK</button>
+        </div>
+    </div>
+
+    <!-- ============================================
+    FOOTER
+    ============================================ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p>© 2024 Addis Eats. Made with ❤️ in Addis Ababa</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
