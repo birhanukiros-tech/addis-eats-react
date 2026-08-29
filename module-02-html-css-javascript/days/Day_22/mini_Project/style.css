@@ -1,5 +1,5 @@
 /* ============================================
-   Base Styles
+   Reset & Base
    ============================================ */
 
 * {
@@ -19,7 +19,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 700px;
     width: 100%;
     background: white;
     border-radius: 16px;
@@ -33,23 +33,23 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 header h1 {
     font-size: 2.2rem;
     font-weight: 700;
     color: #2d3748;
-    margin-bottom: 4px;
 }
 
 header .subtitle {
     color: #718096;
     font-size: 0.95rem;
+    margin-top: 4px;
 }
 
 /* ============================================
-   Status Line
+   Status
    ============================================ */
 
 .status {
@@ -62,6 +62,7 @@ header .subtitle {
     background: #f7fafc;
     border-left: 4px solid #a0aec0;
     transition: all 0.3s ease;
+    min-height: 48px;
 }
 
 .status.loading {
@@ -84,7 +85,9 @@ header .subtitle {
 }
 
 .status-icon {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
 }
 
 .status-text {
@@ -113,30 +116,38 @@ section h2 {
 }
 
 /* ============================================
-   Forms
+   Converter
    ============================================ */
 
+.convert-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 12px;
+    align-items: end;
+}
+
 .form-group {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .form-group label {
-    display: block;
     font-weight: 600;
     font-size: 0.9rem;
     color: #4a5568;
-    margin-bottom: 5px;
 }
 
 .form-group input,
 .form-group select {
-    width: 100%;
     padding: 10px 14px;
     border: 2px solid #e2e8f0;
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.3s ease;
     background: white;
+    width: 100%;
+    height: 44px;
 }
 
 .form-group input:focus,
@@ -146,20 +157,10 @@ section h2 {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
 }
 
-.convert-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 15px;
-    align-items: end;
+.form-group input.error {
+    border-color: #fc8181;
+    background: #fff5f5;
 }
-
-.convert-form .form-group {
-    margin-bottom: 0;
-}
-
-/* ============================================
-   Buttons
-   ============================================ */
 
 .btn {
     padding: 10px 24px;
@@ -173,6 +174,7 @@ section h2 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .btn:active {
@@ -259,7 +261,7 @@ section h2 {
 
 .watchlist-count {
     background: #e2e8f0;
-    padding: 2px 12px;
+    padding: 2px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
     color: #4a5568;
@@ -279,6 +281,7 @@ section h2 {
     font-size: 0.95rem;
     background: white;
     transition: all 0.3s ease;
+    height: 44px;
 }
 
 .add-watchlist select:focus {
@@ -292,11 +295,6 @@ section h2 {
     cursor: not-allowed;
 }
 
-.add-watchlist .btn {
-    white-space: nowrap;
-}
-
-/* Watchlist Items */
 .watchlist {
     list-style: none;
     min-height: 60px;
@@ -348,6 +346,7 @@ section h2 {
     text-align: center;
     color: #a0aec0;
     padding: 30px 0;
+    font-style: italic;
 }
 
 /* ============================================
@@ -363,13 +362,19 @@ footer {
     color: #718096;
 }
 
+footer .disclaimer {
+    font-size: 0.75rem;
+    color: #a0aec0;
+    margin-top: 4px;
+}
+
 /* ============================================
    Responsive
    ============================================ */
 
 @media (max-width: 768px) {
     .container {
-        padding: 20px;
+        padding: 24px;
     }
 
     header h1 {
@@ -377,15 +382,11 @@ footer {
     }
 
     .convert-form {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .convert-form .form-group {
-        margin-bottom: 10px;
-    }
-
-    .btn-primary {
+    .convert-form .btn-primary {
+        grid-column: 1 / -1;
         width: 100%;
     }
 
@@ -401,11 +402,15 @@ footer {
 
 @media (max-width: 480px) {
     .container {
-        padding: 15px;
+        padding: 16px;
     }
 
     header h1 {
         font-size: 1.5rem;
+    }
+
+    .convert-form {
+        grid-template-columns: 1fr;
     }
 
     .watchlist-item .currency-rate {

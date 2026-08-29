@@ -1,17 +1,18 @@
 /**
  * Birr Watch - Complete Application
- * Exercises 1-5 with all features implemented step by step
+ * State → Render → Events Loop
  */
 
 // ============================================
-// STATE OBJECT (Exercise 1)
+// STATE OBJECT
 // ============================================
 
 const state = {
-    rates: null,          // Exchange rates object { USD: 0.0177, KES: 2.29, ... }
+    rates: null,          // Exchange rates object { USD: 0.0177, KES: 2.29 }
     currencies: [],       // Array of currency objects [{ code, name, rate }]
     watchlist: [],        // Array of currency codes ['USD', 'KES']
     watchlistData: [],    // Full data for watchlist items
+    lastCurrency: '',     // Last selected currency for persistence
     isLoading: false,
     error: null,
     lastUpdated: null
@@ -29,7 +30,7 @@ const dom = {
     statusIcon: $('#status .status-icon'),
     statusText: $('#status .status-text'),
     
-    currencySelect: $('#currency'),
+    currencySelect: $('#currencySelect'),
     watchlistSelect: $('#watchlistSelect'),
     amountInput: $('#amount'),
     convertForm: $('#convertForm'),
@@ -41,6 +42,110 @@ const dom = {
     
     lastUpdated: $('#lastUpdated')
 };
+
+// ============================================
+// STORAGE HELPERS
+// ============================================
+
+const STORAGE_KEYS = {
+    WATCHLIST: 'birr_watchlist',
+    LAST_CURRENCY: 'birr_last_currency',
+    RATES_CACHE: 'birr_rates_cache',
+    RATES_TIMESTAMP: 'birr_rates_timestamp'
+};
+
+function saveWatchlist() {
+    try {
+        if (!Array.isArray(state.watchlist)) return false;
+        localStorage.setItem(STORAGE_KEYS.WATCHLIST, JSON.stringify(state.watchlist));
+        return true;
+    } catch (e) {
+        console.error('Error saving watchlist:', e.message);
+        return false;
+    }
+}
+
+function loadWatchlist() {
+    try {
+        const stored = localStorage.getItem(STORAGE_KEYS.WATCHLIST);
+        if (stored === null) return [];
+        
+        const parsed = JSON.parse(stored);
+        if (!Array.isArray(parsed)) {
+            localStorage.removeItem(STORAGE_KEYS.WATCHLIST);
+            return [];
+        }
+        
+        return parsed.filter(code => typeof code === 'string' && code.length > 0);
+    } catch (e) {
+        console.error('Error loading watchlist:', e.message);
+        try { localStorage.removeItem(STORAGE_KEYS.WATCHLIST); } catch (err) {}
+        return [];
+    }
+}
+
+function saveLastCurrency(currency) {
+    try {
+        if (!currency) return false;
+        localStorage.setItem(STORAGE_KEYS.LAST_CURRENCY, currency);
+        return true;
+    } catch (e) {
+        console.error('Error saving last currency:', e.message);
+        return false;
+    }
+}
+
+function loadLastCurrency() {
+    try {
+        return localStorage.getItem(STORAGE_KEYS.LAST_CURRENCY) || '';
+    } catch (e) {
+        console.error('Error loading last currency:', e.message);
+        return '';
+    }
+}
+
+function saveRatesCache(ratesData) {
+    try {
+        if (!ratesData || typeof ratesData !== 'object') return false;
+        localStorage.setItem(STORAGE_KEYS.RATES_CACHE, JSON.stringify(ratesData));
+        localStorage.setItem(STORAGE_KEYS.RATES_TIMESTAMP, new Date().toISOString());
+        return true;
+    } catch (e) {
+        console.error('Error saving rates cache:', e.message);
+        return false;
+    }
+}
+
+function loadRatesCache() {
+    try {
+        const stored = localStorage.getItem(STORAGE_KEYS.RATES_CACHE);
+        if (stored === null) return null;
+        
+        const parsed = JSON.parse(stored);
+        if (!parsed.rates || typeof parsed.rates !== 'object') {
+            localStorage.removeItem(STORAGE_KEYS.RATES_CACHE);
+            localStorage.removeItem(STORAGE_KEYS.RATES_TIMESTAMP);
+            return null;
+        }
+        
+        return parsed;
+    } catch (e) {
+        console.error('Error loading rates cache:', e.message);
+        try {
+            localStorage.removeItem(STORAGE_KEYS.RATES_CACHE);
+            localStorage.removeItem(STORAGE_KEYS.RATES_TIMESTAMP);
+        } catch (err) {}
+        return null;
+    }
+}
+
+function getLastUpdated() {
+    try {
+        return localStorage.getItem(STORAGE_KEYS.RATES_TIMESTAMP) || null;
+    } catch (e) {
+        return null;
+    }
+}
 
 // ============================================
 // UI HELPERS
@@ -66,7 +171,6 @@ function setStatus(type, message) {
         icon.textContent = '✗';
         text.textContent = message || 'Error occurred';
     } else {
-        // Default/ready
         icon.textContent = '●';
         text.textContent = message || 'Ready';
     }
@@ -99,13 +203,52 @@ function formatCurrency(amount, currency) {
     }
 }
 
+function getCurrencyName(code) {
+    const names = {
+        'USD': 'US Dollar',
+        'EUR': 'Euro',
+        'GBP': 'British Pound',
+        'JPY': 'Japanese Yen',
+        'CHF': 'Swiss Franc',
+        'CAD': 'Canadian Dollar',
+        'AUD': 'Australian Dollar',
+        'CNY': 'Chinese Yuan',
+        'INR': 'Indian Rupee',
+        'BRL': 'Brazilian Real',
+        'ZAR': 'South African Rand',
+        'NGN': 'Nigerian Naira',
+        'KES': 'Kenyan Shilling',
+        'TZS': 'Tanzanian Shilling',
+        'UGX': 'Ugandan Shilling',
+        'RWF': 'Rwandan Franc',
+        'ETB': 'Ethiopian Birr'
+    };
+    return names[code] || code;
+}
+
 // ============================================
-// RENDER FUNCTIONS (Exercise 2)
+// RENDER FUNCTION - State → UI
 // ============================================
 
-/**
- * Render currency dropdowns from state
- */
+function render() {
+    // 1. Render currency dropdowns
+    renderCurrencyDropdowns();
+    
+    // 2. Update watchlist data with current rates
+    updateWatchlistData();
+    
+    // 3. Render watchlist
+    renderWatchlist();
+    
+    // 4. Update last updated
+    updateLastUpdated();
+    
+    // 5. Set last currency in dropdown
+    if (state.lastCurrency && dom.currencySelect) {
+        dom.currencySelect.value = state.lastCurrency;
+    }
+}
+
 function renderCurrencyDropdowns() {
     const currencies = state.currencies;
     
@@ -131,21 +274,20 @@ function renderCurrencyDropdowns() {
     dom.watchlistSelect.disabled = available.length === 0;
 }
 
-/**
- * Render watchlist from state (Exercise 5)
- */
 function renderWatchlist() {
     const container = dom.watchlist;
     const data = state.watchlistData;
 
     // Update count
-    dom.watchlistCount.textContent = data.length;
+    dom.watchlistCount.textContent = `${data.length} ${data.length === 1 ? 'currency' : 'currencies'}`;
 
+    // Empty state
     if (data.length === 0) {
-        container.innerHTML = '<li class="watchlist-empty">No currencies in watchlist</li>';
+        container.innerHTML = `<li class="watchlist-empty">No currencies in watchlist. Add your favorites!</li>`;
         return;
     }
 
+    // Render items
     container.innerHTML = data.map(item => `
         <li class="watchlist-item" data-currency="${item.code}">
             <div class="currency-info">
@@ -162,9 +304,6 @@ function renderWatchlist() {
     `).join('');
 }
 
-/**
- * Update watchlist data with current rates
- */
 function updateWatchlistData() {
     if (!state.rates || !state.watchlist) return;
 
@@ -177,9 +316,6 @@ function updateWatchlistData() {
         }));
 }
 
-/**
- * Update last updated timestamp
- */
 function updateLastUpdated() {
     if (state.lastUpdated) {
         try {
@@ -191,81 +327,10 @@ function updateLastUpdated() {
     }
 }
 
-/**
- * Main render function (Exercise 2)
- */
-function render() {
-    renderCurrencyDropdowns();
-    updateWatchlistData();
-    renderWatchlist();
-    updateLastUpdated();
-}
-
 // ============================================
-// FAKE DATA (Exercise 2)
+// API FUNCTIONS
 // ============================================
 
-function loadFakeData() {
-    console.log('📊 Loading fake data for testing...');
-    
-    const fakeRates = {
-        USD: 0.0177,
-        KES: 2.29,
-        EUR: 0.0298,
-        GBP: 0.0256,
-        CAD: 0.0321,
-        JPY: 4.56
-    };
-
-    state.rates = fakeRates;
-    state.lastUpdated = new Date().toISOString();
-    
-    // Create currencies array
-    state.currencies = Object.keys(fakeRates)
-        .sort()
-        .map(code => ({
-            code: code,
-            name: getCurrencyName(code),
-            rate: fakeRates[code]
-        }));
-
-    render();
-    setStatus('success', '✅ Fake data loaded for testing');
-}
-
-// ============================================
-// CURRENCY NAMES (Helper)
-// ============================================
-
-function getCurrencyName(code) {
-    const names = {
-        'USD': 'US Dollar',
-        'EUR': 'Euro',
-        'GBP': 'British Pound',
-        'JPY': 'Japanese Yen',
-        'CHF': 'Swiss Franc',
-        'CAD': 'Canadian Dollar',
-        'AUD': 'Australian Dollar',
-        'CNY': 'Chinese Yuan',
-        'INR': 'Indian Rupee',
-        'BRL': 'Brazilian Real',
-        'ZAR': 'South African Rand',
-        'NGN': 'Nigerian Naira',
-        'KES': 'Kenyan Shilling',
-        'TZS': 'Tanzanian Shilling',
-        'UGX': 'Ugandan Shilling',
-        'RWF': 'Rwandan Franc'
-    };
-    return names[code] || code;
-}
-
-// ============================================
-// API FUNCTIONS (Exercise 3)
-// ============================================
-
-/**
- * Load real exchange rates from API
- */
 async function loadRates() {
     if (state.isLoading) return;
 
@@ -273,7 +338,7 @@ async function loadRates() {
     setStatus('loading', 'Fetching live exchange rates...');
 
     try {
-        // Primary API
+        // Try API
         const response = await fetch('https://api.exchangerate-api.com/v4/latest/ETB', {
             signal: AbortSignal.timeout(10000)
         });
@@ -291,6 +356,7 @@ async function loadRates() {
         // Update state
         state.rates = data.rates;
         state.lastUpdated = data.timestamp || new Date().toISOString();
+        state.error = null;
         
         // Build currencies array
         state.currencies = Object.keys(state.rates)
@@ -302,20 +368,22 @@ async function loadRates() {
                 rate: state.rates[code]
             }));
 
-        // Save to localStorage cache
+        // Cache rates
         saveRatesCache(data);
 
+        // Render
         render();
         setStatus('success', `✅ Rates updated (${state.currencies.length} currencies)`);
 
     } catch (error) {
         console.error('Error loading rates:', error);
         
-        // Try to load from cache
+        // Try cache
         const cached = loadRatesCache();
         if (cached && cached.rates) {
             state.rates = cached.rates;
             state.lastUpdated = cached.timestamp || getLastUpdated();
+            state.error = null;
             
             state.currencies = Object.keys(state.rates)
                 .filter(code => code !== 'ETB')
@@ -327,12 +395,12 @@ async function loadRates() {
                 }));
 
             render();
-            setStatus('warning', `⚠️ Using cached rates (${error.message})`);
+            setStatus('error', `⚠️ Using cached rates (${error.message})`);
         } else {
-            // No cache available
-            setStatus('error', `❌ Failed to load rates: ${error.message}`);
+            // No cache - show error
             state.error = error.message;
             render();
+            setStatus('error', `❌ Failed to load rates: ${error.message}`);
         }
     } finally {
         state.isLoading = false;
@@ -340,118 +408,23 @@ async function loadRates() {
 }
 
 // ============================================
-// STORAGE HELPERS (Exercise 6)
+// CONVERTER
 // ============================================
 
-function saveWatchlist() {
-    try {
-        if (!Array.isArray(state.watchlist)) {
-            throw new Error('Watchlist must be an array');
-        }
-        localStorage.setItem('birr_watchlist', JSON.stringify(state.watchlist));
-        return true;
-    } catch (error) {
-        console.error('Error saving watchlist:', error.message);
-        return false;
-    }
-}
-
-function loadWatchlist() {
-    try {
-        const stored = localStorage.getItem('birr_watchlist');
-        
-        if (stored === null) {
-            return [];
-        }
-
-        const parsed = JSON.parse(stored);
-        
-        if (!Array.isArray(parsed)) {
-            console.warn('Corrupt watchlist data, resetting...');
-            localStorage.removeItem('birr_watchlist');
-            return [];
-        }
-
-        return parsed.filter(code => typeof code === 'string' && code.length > 0);
-    } catch (error) {
-        console.error('Error loading watchlist:', error.message);
-        try {
-            localStorage.removeItem('birr_watchlist');
-        } catch (e) {
-            console.error('Failed to remove corrupt data:', e.message);
-        }
-        return [];
-    }
-}
-
-function saveRatesCache(ratesData) {
-    try {
-        if (!ratesData || typeof ratesData !== 'object') {
-            throw new Error('Invalid rates data');
-        }
-        localStorage.setItem('birr_rates_cache', JSON.stringify(ratesData));
-        localStorage.setItem('birr_rates_timestamp', new Date().toISOString());
-        return true;
-    } catch (error) {
-        console.error('Error saving rates cache:', error.message);
-        return false;
-    }
-}
-
-function loadRatesCache() {
-    try {
-        const stored = localStorage.getItem('birr_rates_cache');
-        
-        if (stored === null) {
-            return null;
-        }
-
-        const parsed = JSON.parse(stored);
-        
-        if (!parsed.rates || typeof parsed.rates !== 'object') {
-            console.warn('Corrupt rates cache, removing...');
-            localStorage.removeItem('birr_rates_cache');
-            localStorage.removeItem('birr_rates_timestamp');
-            return null;
-        }
-
-        return parsed;
-    } catch (error) {
-        console.error('Error loading rates cache:', error.message);
-        try {
-            localStorage.removeItem('birr_rates_cache');
-            localStorage.removeItem('birr_rates_timestamp');
-        } catch (e) {
-            console.error('Failed to remove corrupt data:', e.message);
-        }
-        return null;
-    }
-}
-
-function getLastUpdated() {
-    try {
-        return localStorage.getItem('birr_rates_timestamp');
-    } catch (error) {
-        console.error('Error getting last updated:', error.message);
-        return null;
-    }
-}
-
-// ============================================
-// CONVERTER (Exercise 4)
-// ============================================
-
-/**
- * Handle conversion form submission
- */
 function handleConvert(event) {
     event.preventDefault();
 
-    const amount = parseFloat(dom.amountInput.value);
+    const amountInput = dom.amountInput.value.trim();
     const currency = dom.currencySelect.value;
 
     // Validate amount
-    if (!amount || isNaN(amount) || amount <= 0) {
+    if (!amountInput) {
+        showResult('❌ Please enter an amount', true);
+        return;
+    }
+
+    const amount = Number(amountInput);
+    if (isNaN(amount) || amount <= 0) {
         showResult('❌ Please enter a valid amount greater than 0', true);
         return;
     }
@@ -462,7 +435,7 @@ function handleConvert(event) {
         return;
     }
 
-    // Check if rates are loaded
+    // Check rates
     if (!state.rates) {
         showResult('❌ Exchange rates not loaded. Please refresh.', true);
         return;
@@ -475,7 +448,7 @@ function handleConvert(event) {
         return;
     }
 
-    // Calculate conversion
+    // Calculate
     const result = amount * rate;
     
     // Show result
@@ -490,65 +463,61 @@ function handleConvert(event) {
         </div>
     `);
     
+    // Save last currency
+    state.lastCurrency = currency;
+    saveLastCurrency(currency);
+    
     setStatus('success', `✅ Converted ${amount} ETB to ${currency}`);
 }
 
 // ============================================
-// WATCHLIST FUNCTIONS (Exercise 5)
+// WATCHLIST
 // ============================================
 
-/**
- * Add currency to watchlist
- */
 function addToWatchlist(currencyCode) {
-    if (!currencyCode || !state.rates[currencyCode]) {
+    if (!currencyCode || !state.rates || !state.rates[currencyCode]) {
         setStatus('error', '❌ Invalid currency selected');
         return;
     }
 
-    // Check for duplicates
+    // Check duplicates
     if (state.watchlist.includes(currencyCode)) {
         setStatus('error', `❌ ${currencyCode} is already in your watchlist`);
         return;
     }
 
-    // Add to watchlist
+    // Add to state
     state.watchlist.push(currencyCode);
     
-    // Save to localStorage (Exercise 6)
+    // Persist
     saveWatchlist();
     
-    // Update and render
-    updateWatchlistData();
+    // Render
     render();
     
     setStatus('success', `✅ Added ${currencyCode} to watchlist`);
 }
 
-/**
- * Remove currency from watchlist
- */
 function removeFromWatchlist(currencyCode) {
     if (!currencyCode) return;
 
     const index = state.watchlist.indexOf(currencyCode);
     if (index === -1) return;
 
-    // Remove from watchlist
+    // Remove from state
     state.watchlist.splice(index, 1);
     
-    // Save to localStorage (Exercise 6)
+    // Persist
     saveWatchlist();
     
-    // Update and render
-    updateWatchlistData();
+    // Render
     render();
     
     setStatus('success', `✅ Removed ${currencyCode} from watchlist`);
 }
 
 // ============================================
-// EVENT HANDLERS
+// EVENT LISTENERS
 // ============================================
 
 // Converter form
@@ -564,7 +533,7 @@ dom.addWatchlistBtn.addEventListener('click', () => {
     addToWatchlist(currency);
 });
 
-// Remove from watchlist (delegation - Exercise 5)
+// Remove from watchlist (event delegation)
 dom.watchlist.addEventListener('click', (event) => {
     const removeBtn = event.target.closest('.watchlist-remove');
     if (!removeBtn) return;
@@ -575,41 +544,39 @@ dom.watchlist.addEventListener('click', (event) => {
     removeFromWatchlist(currencyCode);
 });
 
-// Keyboard shortcuts
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-        showResult('');
-        setStatus('success', 'Ready');
+// Real-time validation
+dom.amountInput.addEventListener('input', function() {
+    const val = this.value.trim();
+    if (val && (isNaN(Number(val)) || Number(val) <= 0)) {
+        this.classList.add('error');
+    } else {
+        this.classList.remove('error');
     }
 });
 
 // ============================================
-// INITIALIZATION (Exercise 6)
+// INITIALIZATION
 // ============================================
 
-async function init() {
+function init() {
     console.log('🚀 Initializing Birr Watch...');
     
-    // Load watchlist from localStorage (Exercise 6)
+    // Load from localStorage
     state.watchlist = loadWatchlist();
-    console.log(`📋 Loaded ${state.watchlist.length} watchlist items from localStorage`);
+    state.lastCurrency = loadLastCurrency();
     
-    // Try to load real rates
-    await loadRates();
+    console.log(`📋 Loaded ${state.watchlist.length} watchlist items`);
+    console.log(`💱 Last currency: ${state.lastCurrency || 'none'}`);
     
-    // If rates failed to load and no cache, use fake data for demo
-    if (!state.rates) {
-        console.log('⚠️ No rates loaded, using fake data for demo');
-        loadFakeData();
-    }
-    
-    // Update UI
-    render();
-    
-    console.log('✅ Birr Watch initialized successfully');
-    console.log(`📊 ${state.currencies.length} currencies available`);
-    console.log(`⭐ ${state.watchlist.length} watchlist items`);
+    // Load rates
+    loadRates().then(() => {
+        // After rates load, restore last currency
+        if (state.lastCurrency && dom.currencySelect) {
+            dom.currencySelect.value = state.lastCurrency;
+        }
+        console.log('✅ Birr Watch ready!');
+    });
 }
 
-// Start the app
-init();
+// Start app
+document.addEventListener('DOMContentLoaded', init);

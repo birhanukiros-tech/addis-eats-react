@@ -1,41 +1,29 @@
-# 🇪🇹 Birr Watch - Exercises
+# 🇪🇹 Birr Watch
 
-A step-by-step implementation of a currency converter with watchlist functionality.
+A complete, single-page currency converter app that loads live Ethiopian Birr (ETB) exchange rates and manages a persistent watchlist.
 
-## 📋 Exercise Requirements
+## ✨ Features
 
-### Exercise 1: Scaffolding
-- [x] HTML with empty containers (status, convert form, result, currency select, watchlist ul)
-- [x] State object in app.js
+### 💱 Currency Converter
+- **Live rates** from Exchange Rate API
+- **Loading state** with spinner animation
+- **Error handling** with clear messages
+- **Input validation**: rejects empty, zero, negative, or non-numeric input
+- **Formatted results** with currency symbols
+- **Last currency remembered** across sessions
 
-### Exercise 2: Render with Fake Data
-- [x] render() function with hard-coded rates
-- [x] Currency dropdown fills correctly
-- [x] No network calls yet
+### ⭐ Watchlist
+- **Add currencies** (no duplicates allowed)
+- **Remove currencies** with one click
+- **Empty state** message when empty
+- **Rendered from state** (never from DOM)
+- **Persists** to localStorage
 
-### Exercise 3: Real API Integration
-- [x] loadRates() fetches from live endpoint
-- [x] Checks res.ok
-- [x] Stores data.rates in state
-- [x] Handles loading states
-- [x] Handles error messages
-
-### Exercise 4: Converter Form
-- [x] preventDefault on submit
-- [x] Reads and validates amount with Number()
-- [x] Looks up rate from state
-- [x] Shows formatted result
-
-### Exercise 5: Watchlist
-- [x] Add button with duplicate guard
-- [x] renderWatchlist() from state
-- [x] Delegated click listener for removal
-- [x] data-c attribute for currency code
-
-### Exercise 6: Persistence
-- [x] save() and load() with localStorage
-- [x] Called from init()
-- [x] Watchlist survives reload
+### 💾 Persistence
+- Watchlist saved to localStorage
+- Last currency saved to localStorage
+- Rates cached for offline use
+- Data survives page reloads
 
 ## 🚀 Quick Start
 
@@ -43,5 +31,38 @@ A step-by-step implementation of a currency converter with watchlist functionali
 # Open in browser
 open index.html
 
-# Or use live server
-npx live-server
+# Or use a local server
+python -m http.server 8000
+# Then visit: http://localhost:8000
+
+📁 File structure
+birr-watch/
+├── index.html          # Complete HTML structure
+├── style.css      # All styles (responsive design)
+├── app.js          # All JavaScript (state → render → events)
+├── README.md           # This file
+└── .gitignore          # Git ignore rules
+
+🎯 How It Works
+State → Render → Events Loop
+
+1. STATE
+   ├── rates: { USD: 0.0177, ... }
+   ├── currencies: [{ code, name, rate }]
+   ├── watchlist: ['USD', 'KES']
+   ├── watchlistData: [{ code, name, rate }]
+   ├── lastCurrency: 'USD'
+   ├── isLoading: false
+   ├── error: null
+   └── lastUpdated: '2024-...'
+
+2. RENDER
+   ├── renderCurrencyDropdowns()
+   ├── updateWatchlistData()
+   ├── renderWatchlist()
+   └── updateLastUpdated()
+
+3. EVENTS
+   ├── Convert: handleConvert()
+   ├── Add Watchlist: addToWatchlist()
+   └── Remove Watchlist: removeFromWatchlist()
