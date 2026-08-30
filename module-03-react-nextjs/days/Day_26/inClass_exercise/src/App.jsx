@@ -15,7 +15,7 @@ function Dish({ name,price }) {
   );
 }
 
-const foods =[]
+const foods =[
   {id:1, name:"Shiro", price:120},
   {id:2, name:"Kitfo", price:400},
   {id:3, name:"Tibs", price:300},
@@ -33,4 +33,3 @@ function App(){
   );
   }
   export default App;
-  
