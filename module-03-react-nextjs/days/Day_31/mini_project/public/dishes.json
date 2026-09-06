@@ -1,0 +1,26 @@
+[
+  { "id": 1, "name": "Special Beyaynetu", 
+    "category": "Vegan", "price": 250, 
+    "description": "A colorful platter of various lentil and vegetable stews.", 
+    "image": "/images/beyaynetu.jpg" },
+
+  { "id": 2, "name": "Doro Wot", 
+    "category": "Main", "price": 450, 
+    "description": "Traditional chicken stew made with berbere and boiled eggs.", 
+    "image": "/images/dorowot.jpg" },
+
+  { "id": 3, "name": "Shekla Tibs", 
+    "category": "Grill", "price": 500, 
+    "description": "Sizzling sliced beef served in a traditional clay pot.", 
+    "image": "/images/tibs.jpg" },
+
+  { "id": 4, "name": "Kitfo", 
+    "category": "Main", "price": 600,  
+    "description": "Finely minced lean beef mixed with mitmita and niter kibbeh.", 
+    "image": "/images/kitfo.jpg" },
+
+  { "id": 5, "name": "Shiro Wot", 
+    "category": "Vegan", "price": 180, 
+    "description": "Delicious chickpea flour stew served boiling hot.", 
+    "image": "/images/shiro.jpg" }
+]
