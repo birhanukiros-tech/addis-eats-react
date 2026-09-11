@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import getDishes from "../api/dishes";
 import Skeleton from "../ui/Skeleton";
 import ErrorState from "../ui/ErrorState";
+import useCartStore from "../cart/cartStore";
 
 function DishDetail() {
     const { id } = useParams();
+    const navigate = useNavigate()
 
+    const addToCart =useCartStore((state) => state.addToCart);
     const [dish, setDish] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -64,7 +67,11 @@ function DishDetail() {
                     <span>🌶️ Spicy</span>
                 )}
 
-                <button>
+                <button 
+                onClick={() => {
+                    addToCart(dish);
+                    navigate("/cart")
+                }}>
                     Add to Cart
                 </button>
             </div>
