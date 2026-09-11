@@ -193,3 +193,33 @@ img {
   inset: 0;
   background: #e5e5e5;
 }
+
+/* ==================================================
+   LIVE SEARCHE INPUT STYLE
+   ================================================== */
+
+.search-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input::placeholder {
+  color: var(--color-muted);
+}
+
+.search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(23, 107, 77, 0.12);
+}

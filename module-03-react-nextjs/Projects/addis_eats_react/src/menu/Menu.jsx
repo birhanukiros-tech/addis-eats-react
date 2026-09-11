@@ -9,6 +9,7 @@ function Menu() {
   const [dishes, setDishes] = useState([]);
   const [loading, setLoading] = useState(true);
   const[error, setError] = useState(null);
+  const[searchTerm, setSearchTerm] = useState("");
 
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,15 +31,28 @@ function Menu() {
     loadDishes();
   }, []);
 
-  const filteredDishes =
-  selectedCategory === "all" 
-                ? dishes 
-                : dishes.filter(
-                    (dish) =>dish.category === selectedCategory);
+  const filteredDishes =dishes.filter((dish) =>{
+    const matchesCategory =
+        selectedCategory === "all" ||
+        dish.category === selectedCategory;
+
+    const matchesSearch =
+     dish.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+     return matchesCategory && matchesSearch;
+  });
 
   return(
     <div className="menu-page">
         <h1>Addis Eats Menu</h1>
+
+        <input 
+         className="search-input"
+        type="text" 
+        placeholder="Search dishes..."
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.target.value)}/>
+
         <CategoryBar
         selectedCategory={selectedCategory}
         onSelect={(category) =>{
