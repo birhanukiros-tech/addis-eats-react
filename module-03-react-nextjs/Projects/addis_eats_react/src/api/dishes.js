@@ -1,6 +1,5 @@
 async function getDishes() {
 
-
   const response = await fetch("/menu-data.json");
 
   if (!response.ok) {
