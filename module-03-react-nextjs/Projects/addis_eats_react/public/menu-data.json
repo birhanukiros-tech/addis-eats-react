@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "Shiro",
+    "description": "A smooth and flavorful chickpea stew cooked with Ethiopian spices and served with injera.",
+    "price": 200,
+    "category": "fast",
+    "spicy": true,
+    "image": "/images/shiro.png"
+  },
+  {
+    "id": 2,
+    "name": "Beyaynet",
+    "description": "A colorful combination of vegetable and lentil dishes served together with fresh injera.",
+    "price": 300,
+    "category": "fast",
+    "spicy": true,
+    "image": "/images/beyaynet.png"
+  },
+  {
+    "id": 3,
+    "name": "Firfir",
+    "description": "Torn pieces of injera mixed with a rich, spicy berbere sauce and seasoned Ethiopian flavors.",
+    "price": 250,
+    "category": "fast",
+    "spicy": true,
+    "image": "/images/firfir.png"
+  },
+  {
+    "id": 4,
+    "name": "Doro Wet",
+    "description": "A classic Ethiopian chicken stew prepared with berbere, onions, spices, and served with injera.",
+    "price": 600,
+    "category": "non-fast",
+    "spicy": true,
+    "image": "/images/doro_wet.png"
+  },
+  {
+    "id": 5,
+    "name": "Kitfo",
+    "description": "Finely minced beef seasoned with Ethiopian spices and traditionally served with injera and accompaniments.",
+    "price": 500,
+    "category": "non-fast",
+    "spicy": false,
+    "image": "/images/kitfo.png"
+  },
+  {
+    "id": 6,
+    "name": "Tibs",
+    "description": "Tender pieces of sautéed meat cooked with onions, peppers, herbs, and traditional Ethiopian spices.",
+    "price": 550,
+    "category": "non-fast",
+    "spicy": true,
+    "image": "/images/tibs.png"
+  },
+  {
+    "id": 7,
+    "name": "Dulet",
+    "description": "A traditional Ethiopian dish made with finely chopped meat, seasoned with spices, herbs, and aromatic ingredients.",
+    "price": 450,
+    "category": "non-fast",
+    "spicy": true,
+    "image": "/images/dulet.png"
+  },
+  {
+    "id": 8,
+    "name": "Pizza",
+    "description": "A freshly baked pizza with a crispy crust, rich tomato sauce, melted cheese, and flavorful toppings.",
+    "price": 450,
+    "category": "non-fast",
+    "spicy": false,
+    "image": "/images/pizza.png"
+  },
+  {
+    "id": 9,
+    "name": "Burger",
+    "description": "A juicy burger served in a soft bun with fresh vegetables, sauce, and your choice of flavorful toppings.",
+    "price": 400,
+    "category": "non-fast",
+    "spicy": false,
+    "image": "/images/burger.png"
+  },
+  {
+    "id": 10,
+    "name": "Bottled Water",
+    "description": "Refreshing bottled water, perfect for enjoying with your meal or staying hydrated throughout the day.",
+    "price": 40,
+    "category": "drinks",
+    "spicy": false,
+    "image": "/images/water.png"
+  },
+  {
+    "id": 11,
+    "name": "Coca-Cola",
+    "description": "A chilled and refreshing Coca-Cola soft drink, perfect alongside your favorite meal.",
+    "price": 60,
+    "category": "drinks",
+    "spicy": false,
+    "image": "/images/coca.png"
+  },
+  {
+    "id": 12,
+    "name": "Fanta",
+    "description": "A cold and refreshing orange-flavored soft drink with a bright, fruity taste.",
+    "price": 60,
+    "category": "drinks",
+    "spicy": false,
+    "image": "/images/fanta.png"
+  }
+]
