@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function DishCard({ dish }) {
     const [imageLoading, setImageLoading] = useState(true);
@@ -6,6 +7,7 @@ function DishCard({ dish }) {
     return (
         <article className="dish-card">
 
+            <Link to={`/menu/${dish.id}`} >
             <div className="dish-image-wrapper">
                 {imageLoading && (
                     <div className="image-skeleton"></div>
@@ -16,6 +18,7 @@ function DishCard({ dish }) {
                     alt={dish.name}
                     onLoad={() => setImageLoading(false)}
                 />
+
             </div>
 
             <div className="dish-card-content">
@@ -27,7 +30,8 @@ function DishCard({ dish }) {
 
                 {dish.spicy && <span>🌶️ Spicy</span>}
             </div>
-
+            </Link>
+        
         </article>
     );
 }
