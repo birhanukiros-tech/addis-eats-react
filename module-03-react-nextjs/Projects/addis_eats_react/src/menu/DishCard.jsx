@@ -9,6 +9,8 @@ function DishCard({ dish}) {
                 <p>{dish.description}</p>
 
                 <p>{dish.price} ETB</p>
+
+                {dish.spicy && <span>🌶️ Spicy</span>}
             </div>
         </article>
     );
