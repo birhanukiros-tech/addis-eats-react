@@ -8,11 +8,11 @@ function Navbar() {
 
             <div>
                 <Link to="/">Home</Link>
+
                 <Link to="/menu">Menu</Link>
 
-                <Link to="/cart">
-                    Cart <CartBadge />
-                </Link>
+                <Link to="/favorites">Favorites</Link>
+                <Link to="/cart">Cart<CartBadge /></Link>
             </div>
         </nav>
     );

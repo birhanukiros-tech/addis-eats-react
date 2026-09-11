@@ -345,3 +345,36 @@ img {
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-card);
 }
+
+/*=======================================================
+ Favorite Button
+ ======================================================== */
+
+ .favorite-button {
+    width: 10px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.dish-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.dish-title-row a {
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.dish-title-row h2 {
+    margin: 0;
+}
