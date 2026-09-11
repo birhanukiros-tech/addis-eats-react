@@ -2,11 +2,13 @@ import Menu from "./menu/Menu";
 import DishDetail from "./menu/DishDetail";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Cart from "./cart/Cart";
-
+import Navbar from "./ui/Navbar";
 
 function App() {
     return (
         <div>
+            <Navbar />
+            
             <Routes>
                 <Route path="/" element={<Navigate to="/menu" replace />} />
 

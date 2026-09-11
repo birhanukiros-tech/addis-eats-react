@@ -223,3 +223,125 @@ img {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(23, 107, 77, 0.12);
 }
+
+/* ================================================ 
+    Navbar 
+  ==================================================*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: var(--color-surface);
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.navbar > a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar > div {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.navbar > div a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar > div a:hover {
+    color: var(--color-primary);
+}
+
+/*============================================= 
+  Cart badge 
+==================================================*/
+.cart-badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    margin-left: 4px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-text);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* ======================================================
+  Cart
+  ========================================================= */
+.cart-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.cart-page h1 {
+    margin-bottom: 30px;
+    font-size: var(--font-size-3xl);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
+
+.cart-item h2 {
+    flex: 1;
+    margin: 0;
+    font-size: var(--font-size-lg);
+}
+
+.cart-item button {
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    font-weight: bold;
+}
+
+.cart-item button:not(:last-child) {
+    background: #eeeeee;
+}
+
+.cart-item button:last-child {
+    background: var(--color-danger);
+    color: white;
+}
+
+.cart-item span {
+    min-width: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.cart-item p {
+    min-width: 100px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.cart-total {
+    margin-top: 30px;
+    padding: 20px;
+    text-align: right;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
