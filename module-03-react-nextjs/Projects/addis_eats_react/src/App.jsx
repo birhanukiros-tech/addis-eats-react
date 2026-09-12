@@ -1,25 +1,27 @@
+import {  Route, Routes } from "react-router-dom";
+import Layout from "./Layout";
 import Menu from "./menu/Menu";
 import DishDetail from "./menu/DishDetail";
-import { Navigate, Route, Routes } from "react-router-dom";
 import Cart from "./cart/Cart";
-import Navbar from "./ui/Navbar";
 import Favorites from "./favorites/Favorites";
+import Home from "./Home";
 
 function App() {
     return (
-        <div>
-            <Navbar />
+        <Routes>
+            <Route element={<Layout />}>
+                <Route path="/" element={<Home/>} />
 
-            <Routes>
-                <Route path="/" element={<Navigate to="/menu" replace />} />
                 <Route path="/menu" element={<Menu />} />
-                <Route path="/menu/:id" element={<DishDetail />} />
+
+                <Route path="/menu/:id" element={<DishDetail />}/>
+
                 <Route path="/cart" element={<Cart />} />
+
                 <Route path="/favorites" element={<Favorites />} />
-            </Routes>
-        </div>
+            </Route>
+        </Routes>
     );
 }
 
 export default App;
-
