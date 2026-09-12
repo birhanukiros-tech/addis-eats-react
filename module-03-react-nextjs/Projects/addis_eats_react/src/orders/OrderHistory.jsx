@@ -1,6 +1,9 @@
+import OrderHistoryItem from "./OrderHistoryItem";
 import useOrderHistoryStore from "./orderHistoryStore";
 import useCartStore from "../cart/cartStore";
 import { useNavigate } from "react-router-dom";
+import EmptyState from "../ui/EmptyState";
+
 function OrderHistory() {
     const navigate = useNavigate();
     const addToCart = useCartStore(
@@ -23,7 +26,10 @@ function OrderHistory() {
         return (
             <div className="orders-page">
                 <h1>My Orders</h1>
-                <p>You haven't placed any orders yet.</p>
+                
+                <EmptyState 
+                    title= "No orders yet"
+                    message= "You haven't placed any orders yet." />
             </div>
         );
     }
@@ -32,39 +38,15 @@ function OrderHistory() {
         <div className="orders-page">
             <h1>My Orders</h1>
 
-            {orders.map((order) => (
-                <article
-                    className="order-card"
-                    key={order.id}
-                >
-                    <h2>Order #{order.id}</h2>
+        {orders.map((order) => (
+            <OrderHistoryItem
+            key={order.id}
+            order={order}
+            onReorder={handleReorder}
+            />
+        ))} 
 
-                    <p>Status: <strong>{order.status}</strong></p>
 
-                    <p>Delivery: {order.deliveryTime}</p>
-
-                    <div>
-                        {order.items.map((item) => (
-                            <p key={item.id}>
-                                {item.name} × {item.quantity}
-                            </p>
-                        ))}
-                    </div>
-
-                    <p>Subtotal: {order.subtotal} ETB</p>
-
-                    <p>
-                        Delivery Fee:{" "}
-                        {order.deliveryFee === 0
-                            ? "Free"
-                            : `${order.deliveryFee} ETB`}
-                    </p>
-
-                    <h3>Total: {order.total} ETB</h3>
-
-                    <button onClick={() => handleReorder(order)}>Reorder</button>
-                </article>
-            ))}
         </div>
     );
 }

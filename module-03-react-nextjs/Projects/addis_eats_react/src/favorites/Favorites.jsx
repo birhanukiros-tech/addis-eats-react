@@ -1,6 +1,7 @@
 import useFavoritesStore from "./favoritesStore";
 import FavoriteButton from "./FavoriteButton";
 import { Link } from "react-router-dom";
+import EmptyState from "../ui/EmptyState";
 
 function Favorites() {
     const favorites = useFavoritesStore(
@@ -11,11 +12,13 @@ function Favorites() {
         return (
             <div className="favorites-page">
                 <h1>Your Favorites</h1>
-                <p>You haven't saved any dishes yet.</p>
-
-                <Link to="/menu">
+                
+                <EmptyState
+                 title= "No favorites yet"
+                 message= "Save your favorite dishes and they will apper here."
+                action={<Link to="/menu">
                     Browse Menu
-                </Link>
+                </Link>} />
             </div>
         );
     }

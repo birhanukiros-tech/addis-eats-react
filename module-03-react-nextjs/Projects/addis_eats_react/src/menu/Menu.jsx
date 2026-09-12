@@ -44,7 +44,7 @@ function Menu() {
 
   return(
     <div className="menu-page">
-        <h1>Addis Eats Menu</h1>
+        <h1>🍽️ Addis Eats Menu</h1>
 
         <input 
          className="search-input"

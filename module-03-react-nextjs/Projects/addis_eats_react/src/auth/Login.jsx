@@ -1,4 +1,4 @@
-import { useAuth } from "./AuthContext";
+import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 function Login() {

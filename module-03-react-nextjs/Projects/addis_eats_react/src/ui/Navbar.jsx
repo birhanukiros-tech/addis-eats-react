@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import CartBadge from "../cart/CartBadge";
-import { useAuth } from "../auth/AuthContext";
+import useAuth from "../auth/useAuth";
 import ThemeToggle from "../theme/ThemeToggle";
 
 function Navbar() {
     const { user, logout } = useAuth();
     return (
         <nav className="navbar">
-            <Link to="/">Addis Eats</Link>
+            <Link to="/">🍽️ Addis Eats</Link>
 
             <div>
                 <Link to="/">Home</Link>
