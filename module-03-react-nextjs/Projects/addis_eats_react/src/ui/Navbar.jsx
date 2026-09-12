@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import CartBadge from "../cart/CartBadge";
 
+
 function Navbar() {
     return (
         <nav className="navbar">
@@ -13,6 +14,7 @@ function Navbar() {
 
                 <Link to="/favorites">Favorites</Link>
                 <Link to="/cart">Cart<CartBadge /></Link>
+                <Link to="/orders">Orders</Link>
             </div>
         </nav>
     );

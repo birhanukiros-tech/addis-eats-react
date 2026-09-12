@@ -3,7 +3,8 @@ import Field from "./Field";
 import validateCheckout from "./validate";
 import useCartStore from "../cart/cartStore";
 import { getDeliveryFee, getDeliveryTime } from "../utils/deliveryEstimate";
-
+import DeliveryEstimate from "./DeliveryEstimate";
+import useOrderHistoryStore from "../orders/orderHistoryStore";
 function Checkout() {
   const [formData, setFormData] = useState({
     fullname: "",
@@ -28,6 +29,9 @@ const deliveryTime = getDeliveryTime();
 
 const total = subtotal + deliveryFee;
 
+const addOrder = useOrderHistoryStore(
+    (state) => state.addOrder
+);
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -52,7 +56,19 @@ function handleSubmit(event) {
         return;
     }
 
-    // Order will be created here later.
+    const order = {
+    id: Date.now(),
+    items: cart,
+    subtotal,
+    deliveryFee,
+    total,
+    deliveryTime,
+    customer: formData,
+    status: "Pending",
+    createdAt: new Date().toISOString()
+};
+
+addOrder(order);
 }
 
   return (
@@ -133,11 +149,10 @@ function handleSubmit(event) {
 
                 <p>Subtotal: <strong>{subtotal} ETB</strong></p>
 
-                <p>Delivery Fee:{" "}
-                    <strong>{deliveryFee === 0 ? "Free" : `${deliveryFee} ETB`}</strong>
-                </p>
-
-                <p>Estimated Delivery: <strong>{deliveryTime}</strong></p>
+                <DeliveryEstimate
+                    deliveryFee={deliveryFee}
+                    deliveryTime={deliveryTime}
+                />
 
                 <h3>Total: {total} ETB</h3>
             </div>

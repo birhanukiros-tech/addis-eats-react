@@ -6,7 +6,7 @@ import Cart from "./cart/Cart";
 import Favorites from "./favorites/Favorites";
 import Home from "./Home";
 import Checkout from "./checkout/Checkout";
-
+import OrderHistory from "./orders/OrderHistory";
 function App() {
     return (
         <Routes>
@@ -21,6 +21,7 @@ function App() {
 
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/orders" element={<OrderHistory />} />
                 </Route>
         </Routes>
     );
