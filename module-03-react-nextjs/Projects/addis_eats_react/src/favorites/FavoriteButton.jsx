@@ -29,6 +29,12 @@ function FavoriteButton({ dish }) {
         <button
             className="favorite-button"
             onClick={handleFavorite}
+            type="button"
+            aria-label= {
+                isFavorite
+                ? `Remove ${dish.name} from favorites`
+                : `Add ${dish.name} to favorites`
+            }
         >
             {isFavorite ? "❤️" : "♡"}
         </button>
