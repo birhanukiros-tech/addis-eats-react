@@ -5,6 +5,7 @@ import DishDetail from "./menu/DishDetail";
 import Cart from "./cart/Cart";
 import Favorites from "./favorites/Favorites";
 import Home from "./Home";
+import Checkout from "./checkout/Checkout";
 
 function App() {
     return (
@@ -19,7 +20,8 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
 
                 <Route path="/favorites" element={<Favorites />} />
-            </Route>
+                <Route path="/checkout" element={<Checkout />} />
+                </Route>
         </Routes>
     );
 }

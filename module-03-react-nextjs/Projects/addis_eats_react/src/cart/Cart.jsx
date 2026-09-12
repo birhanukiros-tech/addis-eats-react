@@ -1,8 +1,9 @@
 import useCartStore from "./cartStore";
 import CartItem from "./CartItem";
-
+import { useNavigate } from "react-router-dom";
 function Cart() {
     const cart = useCartStore((state) => state.cart);
+    const navigate = useNavigate();
 
     const total = cart.reduce(
         (sum, item) => sum + item.price * item.quantity,
@@ -31,6 +32,13 @@ function Cart() {
 
             <div className="cart-total">
                 <h2>Total: {total} ETB</h2>
+
+            <button
+            className="checkout-button"
+            onClick={() => navigate("/checkout")}
+            >
+            Proceed to Checkout
+            </button>
             </div>
         </div>
     );

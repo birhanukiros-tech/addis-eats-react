@@ -538,3 +538,153 @@ Footer
     color: var(--color-surface);
     font-size: var(--font-size-sm);
 }
+/*===============================================
+  Checkout Button
+  ================================================ */
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    margin-top: 18px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--color-primary);
+    color: var(--color-surface);
+    text-align: center;
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.checkout-button:hover {
+    opacity: 0.9;
+}
+/* =========================================
+Checkout 
+=============================================*/
+.checkout-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px 70px;
+}
+
+.checkout-page h1 {
+    margin-bottom: 30px;
+    font-size: var(--font-size-3xl);
+}
+
+.checkout-page form {
+    padding: 30px;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.form-field label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #d6d6d6;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+}
+
+.form-field textarea {
+    resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(23, 107, 77, 0.12);
+}
+
+.checkout-page form > button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--color-primary);
+    color: var(--color-surface);
+    font-size: var(--font-size-base);
+    font-weight: bold;
+}
+
+.checkout-page form > button:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .checkout-page {
+        padding: 35px 20px 50px;
+    }
+
+    .checkout-page form {
+        padding: 20px;
+    }
+
+    .checkout-page h1 {
+        font-size: var(--font-size-2xl);
+    }
+}
+/*============================================
+  ERROR STYLING
+  ============================================== */
+  .form-error {
+    margin: -15px 0 18px;
+    color: var(--color-danger);
+    font-size: var(--font-size-sm);
+}
+
+/*======================================================
+ CHEACKOUT SUMMERY
+ ==========================================================*/
+
+ .checkout-summary {
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: var(--color-background);
+    border: 1px solid #e5e5e5;
+    border-radius: var(--radius-md);
+}
+
+.checkout-summary h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: var(--font-size-xl);
+}
+
+.checkout-summary p {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.checkout-summary h3 {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e5e5;
+    text-align: right;
+    font-size: var(--font-size-lg);
+}
