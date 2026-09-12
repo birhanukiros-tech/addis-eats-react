@@ -1,9 +1,23 @@
 import useOrderHistoryStore from "./orderHistoryStore";
-
+import useCartStore from "../cart/cartStore";
+import { useNavigate } from "react-router-dom";
 function OrderHistory() {
+    const navigate = useNavigate();
+    const addToCart = useCartStore(
+        (state) => state.addToCart
+    );
     const orders = useOrderHistoryStore(
         (state) => state.orders
     );
+
+    function handleReorder(order) {
+    order.items.forEach((item) => {
+        for (let i = 0; i < item.quantity; i++) {
+            addToCart(item);
+            }
+        });
+        navigate("/cart");
+    }
 
     if (orders.length === 0) {
         return (
@@ -47,6 +61,8 @@ function OrderHistory() {
                     </p>
 
                     <h3>Total: {order.total} ETB</h3>
+
+                    <button onClick={() => handleReorder(order)}>Reorder</button>
                 </article>
             ))}
         </div>

@@ -15,6 +15,12 @@
   --color-danger: #c0392b;
   --color-badge-bg: #ffe5e5;
 
+  .app.dark {
+    --color-background: #121212;
+    --color-surface: #1e1e1e;
+    --color-text: #f5f5f5;
+    --color-muted: #bdbdbd;
+}
   /* Typography */
   --font-family: Arial, sans-serif;
 
