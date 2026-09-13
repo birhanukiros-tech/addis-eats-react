@@ -1,21 +1,16 @@
 import { Link } from "react-router-dom";
 import FavoriteButton from "../favorites/FavoriteButton";
 import useCartStore from "../cart/cartStore";
-import { useState } from "react";
 import formatCurrency from "../utils/formatCurrency";
 
-function DishCard({ dish }) {
+function DishCard({ dish, onAddToCart }) {
     const addToCart = useCartStore((state) => state.addToCart);
-    const [added, setAdded] = useState(false)
 
     function handleAddToCart() {
         addToCart(dish);
-        setAdded(true);
-
-        setTimeout(() =>{
-            setAdded(false);
-        }, 1500);
+        onAddToCart();
     }
+
     return (
         <article className="dish-card">
             <div className="dish-image-wrapper">
@@ -27,21 +22,23 @@ function DishCard({ dish }) {
                     <Link to={`/menu/${dish.id}`}>
                         <h2>{dish.name}</h2>
                     </Link>
-                    
-                     <FavoriteButton dish={dish} />
+
+                    <FavoriteButton dish={dish} />
                 </div>
 
                 <p>{dish.description}</p>
-                <p>{formatCurrency(dish.price)} </p>
-                {dish.spicy &&  <span>🌶️ Spicy</span>}
 
-                <button onClick={handleAddToCart}>Add to Cart</button>
+                <p>{formatCurrency(dish.price)}</p>
 
-                {added && (
-                    <p className="cart-feedback">✓ Added to cart </p>
-                )}
+                {dish.spicy && <span>🌶️ Spicy</span>}
+
+                <button
+                    type="button"
+                    onClick={handleAddToCart}
+                >
+                    Add to Cart
+                </button>
             </div>
-
         </article>
     );
 }

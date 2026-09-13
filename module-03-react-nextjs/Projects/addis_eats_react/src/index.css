@@ -1,4 +1,3 @@
-
 /* =========================================================
    ADDIS EATS — GLOBAL DESIGN SYSTEM
    ========================================================= */
@@ -1695,3 +1694,178 @@ select:focus-visible {
   background: var(--color-border);
 }
 
+/* ========================================
+   RIGHT-SIDE CART DRAWER
+======================================== */
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100%;
+  height: 100vh;
+  background: var(--color-background);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.18);
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+
+  animation: cartDrawerIn 0.25s ease-out;
+}
+
+@keyframes cartDrawerIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Header */
+
+.cart-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.2rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cart-drawer-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.cart-drawer-header button {
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.cart-drawer-header button:hover {
+  background: var(--color-border);
+}
+
+/* Cart items */
+
+.cart-drawer-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.25rem;
+}
+
+.cart-drawer-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cart-drawer-item-info h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+}
+
+.cart-drawer-item-info p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Controls */
+
+.cart-drawer-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.cart-drawer-controls button {
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  border-radius: 6px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+
+.cart-drawer-controls button:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.cart-drawer-controls span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.cart-drawer-controls button:last-child {
+  margin-left: auto;
+}
+
+/* Footer */
+
+.cart-drawer-footer {
+  padding: 1.25rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.cart-drawer-footer p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0.6rem;
+}
+
+.cart-drawer-footer p:last-of-type {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.cart-drawer-footer > button {
+  width: 100%; padding: 0.85rem 1rem; border: none; border-radius: 8px;
+
+  background: var(--color-primary);
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cart-drawer-footer > button:hover {
+  background: #12583f;
+  transform: translateY(-1px);
+}
+
+.cart-drawer-footer > button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .cart-drawer {
+    width: 100%;
+  }
+}
