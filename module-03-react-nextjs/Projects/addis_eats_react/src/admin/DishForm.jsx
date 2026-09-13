@@ -45,6 +45,7 @@ function DishForm({ dish, onSave, onCancel }) {
         <form onSubmit={handleSubmit} className="dish-form">
             <h2>{dish ? "Edit Dish" : "Add New Dish"}</h2>
 
+            <div className="admin-dish-form">
             <div className="form-field">
                 <label htmlFor="name">Dish Name</label>
                 <input
@@ -102,7 +103,7 @@ function DishForm({ dish, onSave, onCancel }) {
             </div>
 
             <div className="form-field">
-                <label>
+                <label  className="spicy-checkbox">
                     <input
                         type="checkbox"
                         name="spicy"
@@ -118,10 +119,10 @@ function DishForm({ dish, onSave, onCancel }) {
 
             <button
                 type="button"
-                onClick={onCancel}
-            >
+                onClick={onCancel} >
                 Cancel
             </button>
+            </div>
         </form>
     );
 }
