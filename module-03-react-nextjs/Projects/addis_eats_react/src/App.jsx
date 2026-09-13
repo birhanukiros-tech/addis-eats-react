@@ -13,6 +13,8 @@ import AdminLogin from "./admin/AdminLogin";
 import AdminLayout from "./admin/AdminLayout";
 import Dashboard from "./admin/Dashboard";
 import RequireAdmin from "./admin/RequireAdmin";
+import DishManager from "./admin/DishManager";
+import OrderManager from "./admin/OrderManager";
 
 
 function App() {
@@ -21,16 +23,12 @@ function App() {
     return (
         <Routes>
             <Route element={<Layout />}>
+
                 <Route path="/" element={<Home/>} />
-
                 <Route path="/menu" element={<Menu />} />
-
                 <Route path="/menu/:id" element={<DishDetail />}/>
-
                 <Route path="/cart" element={<Cart />} />
-
                 <Route path="/favorites" element={<Favorites />} />
-
                 <Route path="/checkout" element={
                     <RequireAuth>
                         <Suspense fallback={<p>Loading checkout...</p>}>
@@ -39,12 +37,16 @@ function App() {
                     </RequireAuth>} />
                 <Route path="/orders" element={<OrderHistory />} />
                 <Route path="/login" element={<Login />} />
+
                 <Route path="/admin/login" element={<AdminLogin />} />
+
                 <Route path="/admin" element =
                 {<RequireAdmin> 
                     <AdminLayout /> 
                  </RequireAdmin>}>
                  <Route index element ={<Dashboard />} />
+                 <Route path="menu" element={<DishManager />} />
+                 <Route path="orders" element={<OrderManager/>} /> 
                  </Route>
                 </Route>
         </Routes>

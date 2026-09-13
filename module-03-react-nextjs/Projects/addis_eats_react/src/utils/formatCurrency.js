@@ -1,4 +1,4 @@
-function formatCurrency() {
+function formatCurrency(amount) {
     return `${amount.toLocaleString()} ETB`;
 }
 

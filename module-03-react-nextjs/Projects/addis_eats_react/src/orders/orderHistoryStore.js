@@ -1,5 +1,4 @@
 import { create } from "zustand";
-
 const useOrderHistoryStore = create((set) => ({
     orders: JSON.parse(
         localStorage.getItem("addis_eats_orders")
@@ -11,6 +10,23 @@ const useOrderHistoryStore = create((set) => ({
                 ...state.orders,
                 order
             ];
+
+            localStorage.setItem(
+                "addis_eats_orders",
+                JSON.stringify(orders)
+            );
+
+            return { orders };
+        });
+    },
+
+    updateOrderStatus: (id, status) => {
+        set((state) => {
+            const orders = state.orders.map((order) =>
+                order.id === id
+                    ? { ...order, status }
+                    : order
+            );
 
             localStorage.setItem(
                 "addis_eats_orders",
