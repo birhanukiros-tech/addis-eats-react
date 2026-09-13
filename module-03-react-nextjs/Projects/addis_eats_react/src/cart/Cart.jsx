@@ -1,7 +1,8 @@
 import useCartStore from "./cartStore";
 import CartItem from "./CartItem";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import EmptyState from "../ui/EmptyState";
+import formatCurrency from "../utils/formatCurrency";
 
 function Cart() {
   const cart = useCartStore((state) => state.cart);
@@ -16,7 +17,8 @@ function Cart() {
 
         <EmptyState
             title= "Your cart is empty"
-            message= "Add some delicious dishes from our menu." />
+            message= "Add some delicious dishes from our menu."
+            action={<Link to="/menu">Browse Menu</Link>} />
       </div>
     );
   }
@@ -30,7 +32,7 @@ function Cart() {
       ))}
 
       <div className="cart-total">
-        <h2>Total: {total} ETB</h2>
+        <h2>Total: {formatCurrency(total)}</h2>
 
         <button
           className="checkout-button"

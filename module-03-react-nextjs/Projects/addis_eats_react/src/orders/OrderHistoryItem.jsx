@@ -1,3 +1,5 @@
+import formatCurrency from "../utils/formatCurrency";
+
 function OrderHistoryItem({ order, onReorder }) {
   return (
     <article className="order-card">
@@ -17,14 +19,14 @@ function OrderHistoryItem({ order, onReorder }) {
         ))}
       </div>
 
-      <p>Subtotal: {order.subtotal} ETB</p>
+      <p>Subtotal: {formatCurrency(order.subtotal)}</p>
 
       <p>
         Delivery Fee:{" "}
-        {order.deliveryFee === 0 ? "Free" : `${order.deliveryFee} ETB`}
+        {order.deliveryFee === 0 ? "Free" : formatCurrency(order.deliveryFee)}
       </p>
 
-      <h3>Total: {order.total} ETB</h3>
+      <h3>Total: {formatCurrency(order.total)}</h3>
 
       <button type="button" onClick={() => onReorder(order)}>
         Reorder

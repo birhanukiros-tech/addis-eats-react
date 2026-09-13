@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import FavoriteButton from "../favorites/FavoriteButton";
 import useCartStore from "../cart/cartStore";
 import { useState } from "react";
+import formatCurrency from "../utils/formatCurrency";
 
 function DishCard({ dish }) {
     const addToCart = useCartStore((state) => state.addToCart);
@@ -31,7 +32,7 @@ function DishCard({ dish }) {
                 </div>
 
                 <p>{dish.description}</p>
-                <p>{dish.price} ETB</p>
+                <p>{formatCurrency(dish.price)} </p>
                 {dish.spicy &&  <span>🌶️ Spicy</span>}
 
                 <button onClick={handleAddToCart}>Add to Cart</button>

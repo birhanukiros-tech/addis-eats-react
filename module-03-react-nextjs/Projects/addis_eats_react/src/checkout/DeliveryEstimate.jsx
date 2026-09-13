@@ -1,3 +1,5 @@
+import formatCurrency from "../utils/formatCurrency";
+
 function DeliveryEstimate({ deliveryFee, deliveryTime }) {
     return (
         <div className="delivery-estimate">
@@ -6,7 +8,7 @@ function DeliveryEstimate({ deliveryFee, deliveryTime }) {
                 <strong>
                     {deliveryFee === 0
                         ? "Free"
-                        : `${deliveryFee} ETB`}
+                        : formatCurrency(deliveryFee)} 
                 </strong>
             </p>
 

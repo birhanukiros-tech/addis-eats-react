@@ -1,4 +1,5 @@
 import useCartStore from "./cartStore";
+import formatCurrency from "../utils/formatCurrency";
 
 function CartItem({ item }) {
     const increaseQuantity = useCartStore(
@@ -29,7 +30,7 @@ function CartItem({ item }) {
                 +
             </button>
 
-            <p>{subtotal} ETB</p>
+            <p>{formatCurrency(subtotal)}</p>
 
             <button onClick={() => removeFromCart(item.id)}>
                 Remove

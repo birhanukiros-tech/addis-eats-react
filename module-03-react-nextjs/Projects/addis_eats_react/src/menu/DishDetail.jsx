@@ -1,83 +1,76 @@
 import { useEffect, useState } from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import getDishes from "../api/dishes";
 import Skeleton from "../ui/Skeleton";
 import ErrorState from "../ui/ErrorState";
 import useCartStore from "../cart/cartStore";
+import formatCurrency from "../utils/formatCurrency";
 
 function DishDetail() {
-    const { id } = useParams();
-    const navigate = useNavigate()
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    const addToCart =useCartStore((state) => state.addToCart);
-    const [dish, setDish] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const addToCart = useCartStore((state) => state.addToCart);
+  const [dish, setDish] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        async function loadDish() {
-            try {
-                const dishes = await getDishes();
+  useEffect(() => {
+    async function loadDish() {
+      try {
+        const dishes = await getDishes();
 
-                const foundDish = dishes.find(
-                    (dish) => dish.id === Number(id)
-                );
+        const foundDish = dishes.find((dish) => dish.id === Number(id));
 
-                if (!foundDish) {
-                    throw new Error("Dish not found");
-                }
-
-                setDish(foundDish);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
+        if (!foundDish) {
+          throw new Error("Dish not found");
         }
 
-        loadDish();
-    }, [id]);
-
-    if (loading) {
-        return <Skeleton />;
+        setDish(foundDish);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
 
-    if (error) {
-        return <ErrorState message={error} />;
-    }
+    loadDish();
+  }, [id]);
 
-    return (
-        <div className="dish-detail">
+  if (loading) {
+    return <Skeleton />;
+  }
 
-            <img
-                src={dish.image}
-                alt={dish.name}
-            />
+  if (error) {
+    return <ErrorState message={error} />;
+  }
 
-            <div>
-                <h1>{dish.name}</h1>
+  return (
+    <div className="dish-detail">
+      <img src={dish.image} alt={dish.name} />
 
-                <p>{dish.description}</p>
+      <div>
+        <h1>{dish.name}</h1>
 
-                <p>{dish.price} ETB</p>
+        <p>{dish.description}</p>
 
-                <p>Category: {dish.category}</p>
+        <p>{formatCurrency(dish.price)}</p>
 
-                {dish.spicy && (
-                    <span>🌶️ Spicy</span>
-                )}
+        <p>Category: {dish.category}</p>
 
-                <button 
-                onClick={() => {
-                    addToCart(dish);
-                    navigate("/cart")
-                }}>
-                    Add to Cart
-                </button>
-            </div>
+        {dish.spicy && <span>🌶️ Spicy</span>}
 
-        </div>
-    );
+        <button
+          onClick={() => {
+            addToCart(dish);
+            navigate("/cart");
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default DishDetail;

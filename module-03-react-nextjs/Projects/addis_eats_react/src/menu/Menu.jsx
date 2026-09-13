@@ -71,7 +71,7 @@ function Menu() {
                 </div>
             ): error ? (
                 <ErrorState message={error}/>
-            ) : dishes.length === 0 ? (
+            ) : filteredDishes.length === 0 ? (
                     <p>No dishes available.</p>
             ):(
                 <DishList dishes={filteredDishes} />
