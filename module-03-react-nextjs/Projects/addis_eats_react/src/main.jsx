@@ -1,22 +1,25 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+import App from "./App.jsx";
 import { AuthProvider } from "./auth/AuthContext";
 import { ThemeProvider } from "./theme/ThemeContext";
-import ErrorBoundary from './ErrorBoundary.jsx'
+import ErrorBoundary from "./ErrorBoundary.jsx";
+import { AdminAuthProvider } from "./admin/AdminAuthContext.jsx";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <ThemeProvider>
-          <ErrorBoundary>
-            <App />
-          </ErrorBoundary>
-        </ThemeProvider>
+        <AdminAuthProvider>
+          <ThemeProvider>
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
+          </ThemeProvider>
+        </AdminAuthProvider>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
-)
+);

@@ -9,6 +9,11 @@ import { lazy, Suspense } from "react";
 import OrderHistory from "./orders/OrderHistory";
 import Login from "./auth/Login";
 import RequireAuth from "./auth/RequireAuth";
+import AdminLogin from "./admin/AdminLogin";
+import AdminLayout from "./admin/AdminLayout";
+import Dashboard from "./admin/Dashboard";
+import RequireAdmin from "./admin/RequireAdmin";
+
 
 function App() {
     const Checkout = lazy(() => import("./checkout/Checkout"));
@@ -34,6 +39,13 @@ function App() {
                     </RequireAuth>} />
                 <Route path="/orders" element={<OrderHistory />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin" element =
+                {<RequireAdmin> 
+                    <AdminLayout /> 
+                 </RequireAdmin>}>
+                 <Route index element ={<Dashboard />} />
+                 </Route>
                 </Route>
         </Routes>
     );
