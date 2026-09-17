@@ -8,7 +8,7 @@ function getDeliveryFee(total) {
     return 80;
 }
 function getDeliveryTime() {
-    return "30–45 minutes";
+    return "20–30 minutes";
 }
 
 export { getDeliveryFee, getDeliveryTime };

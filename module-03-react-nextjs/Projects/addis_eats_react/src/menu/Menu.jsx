@@ -5,6 +5,7 @@ import ErrorState from "../ui/ErrorState";
 import DishList from "./DishList";
 import CategoryBar from "./CategoryBar";
 import { useSearchParams } from "react-router-dom";
+
 function Menu() {
   const [dishes, setDishes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,10 @@ function Menu() {
   useEffect(() => {
     async function loadDishes() {
         try{
-      const data = await getDishes();
+            
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        const data = await getDishes();
 
       setDishes(data);
         } catch(error) {
@@ -64,10 +68,10 @@ function Menu() {
         }}/>
     
             {loading ? (
-                <div>
-                    <Skeleton/>
-                    <Skeleton/>
-                    <Skeleton/>
+                <div className="dish-list">
+                    {Array.from({ length: 12 }).map((_, index) => (
+                        <Skeleton key={index} />
+                    ))}
                 </div>
             ): error ? (
                 <ErrorState message={error}/>

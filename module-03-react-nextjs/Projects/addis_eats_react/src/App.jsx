@@ -24,7 +24,7 @@ function App() {
         <Routes>
             <Route element={<Layout />}>
 
-                <Route path="/" element={<Home/>} />
+                <Route path="/" element={<Home />} />
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/menu/:id" element={<DishDetail />}/>
                 <Route path="/cart" element={<Cart />} />
@@ -40,10 +40,15 @@ function App() {
 
                 <Route path="/admin/login" element={<AdminLogin />} />
 
-                <Route path="/admin" element =
-                {<RequireAdmin> 
-                    <AdminLayout /> 
-                 </RequireAdmin>}>
+                <Route 
+                    path="/admin"
+                    element ={
+                        <RequireAdmin> 
+                            <AdminLayout /> 
+                        </RequireAdmin>
+                }
+                >
+
                  <Route index element ={<Dashboard />} />
                  <Route path="menu" element={<DishManager />} />
                  <Route path="orders" element={<OrderManager/>} /> 
