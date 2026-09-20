@@ -29,6 +29,7 @@ function App() {
                 <Route path="/menu/:id" element={<DishDetail />}/>
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/favorites" element={<Favorites />} />
+                <Route path="*"  element= {<h1>Page Not Found!⚠️</h1>}/>
                 <Route path="/checkout" element={
                     <RequireAuth>
                         <Suspense fallback={<p>Loading checkout...</p>}>
@@ -48,7 +49,7 @@ function App() {
                         </RequireAdmin>
                 }
                 >
-
+                
                  <Route index element ={<Dashboard />} />
                  <Route path="menu" element={<DishManager />} />
                  <Route path="orders" element={<OrderManager/>} /> 

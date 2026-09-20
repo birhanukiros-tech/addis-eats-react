@@ -17,7 +17,16 @@ function DishManager() {
     async function loadDishes() {
       try {
         const data = await getDishes();
-        setDishes(data);
+
+        const savedStatuses =
+          JSON.parse(localStorage.getItem("addis_eats_dish_status")) || {};
+
+        const dishesWithStatus = data.map((dish) => ({
+          ...dish,
+          enabled: savedStatuses[dish.id] ?? dish.enabled ?? true,
+        }));
+
+        setDishes(dishesWithStatus);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -39,6 +48,7 @@ function DishManager() {
       const newDish = {
         ...dishData,
         id: Date.now(),
+        enabled: true,
       };
 
       setDishes((currentDishes) => [...currentDishes, newDish]);
@@ -53,11 +63,11 @@ function DishManager() {
     setShowForm(true);
 
     setTimeout(() => {
-        document
-            .querySelector(".dish-form")
-            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.querySelector(".dish-form")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }, 100);
-
   }
 
   function handleCancel() {
@@ -71,6 +81,29 @@ function DishManager() {
     );
 
     setDeletingDish(null);
+  }
+
+  function handleToggleDish(dishId) {
+    setDishes((currentDishes) => {
+      const updatedDishes = currentDishes.map((dish) =>
+        dish.id === dishId
+          ? {
+              ...dish,
+              enabled: !dish.enabled,
+            }
+          : dish,
+      );
+
+      const statuses = {};
+
+      updatedDishes.forEach((dish) => {
+        statuses[dish.id] = dish.enabled;
+      });
+
+      localStorage.setItem("addis_eats_dish_status", JSON.stringify(statuses));
+
+      return updatedDishes;
+    });
   }
 
   if (loading) {
@@ -132,7 +165,12 @@ function DishManager() {
 
       <div className="admin-menu-list">
         {dishes.map((dish) => (
-          <article className="admin-menu-card" key={dish.id}>
+          <article
+            className={`admin-menu-card ${
+              !dish.enabled ? "dish-disabled" : ""
+            }`}
+            key={dish.id}
+          >
             <img
               className="admin-menu-image"
               src={dish.image}
@@ -141,8 +179,14 @@ function DishManager() {
 
             <div className="admin-menu-details">
               <h2>{dish.name}</h2>
+
               <p>{dish.price} ETB</p>
+
               <p>Category: {dish.category}</p>
+
+              <p className="dish-status">
+                Status: <strong>{dish.enabled ? "Enabled" : "Disabled"}</strong>
+              </p>
 
               <div className="admin-menu-actions">
                 <button
@@ -156,8 +200,17 @@ function DishManager() {
                 <button
                   className="admin-menu-delete"
                   type="button"
-                  onClick={() => setDeletingDish(dish)}>
+                  onClick={() => setDeletingDish(dish)}
+                >
                   Delete
+                </button>
+
+                <button
+                  className="admin-menu-toggle"
+                  type="button"
+                  onClick={() => handleToggleDish(dish.id)}
+                >
+                  {dish.enabled ? "Disable" : "Enable"}
                 </button>
               </div>
             </div>

@@ -16,9 +16,10 @@ function Cart() {
         <h1>Your Cart</h1>
 
         <EmptyState
-            title= "Your cart is empty"
-            message= "Add some delicious dishes from our menu."
-            action={<Link to="/menu">Browse Menu</Link>} />
+          title="Your cart is empty"
+          message="Add some delicious dishes from our menu."
+          action={<Link to="/menu">Browse Menu</Link>}
+        />
       </div>
     );
   }
