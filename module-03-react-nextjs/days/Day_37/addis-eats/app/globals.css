@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================================
+   DAY 37 - ADDIS EATS STYLES
+================================ */
+
+/* ---------- Root Header ---------- */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fffaf0;
+  color: #222;
+}
+
+header {
+  padding: 18px 30px;
+  background: #176b4d;
+  color: white;
+}
+
+header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  background: #176b4d;
+  color: white;
+}
+
+/* ---------- Menu Layout ---------- */
+
+.menu-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 70vh;
+  gap: 30px;
+  padding: 30px;
+}
+
+/* ---------- Sidebar ---------- */
+
+.menu-layout aside {
+  background: white;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid #e6e0d5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  height: fit-content;
+}
+
+.menu-layout aside h2 {
+  margin-top: 0;
+  color: #176b4d;
+}
+
+.menu-layout nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+.menu-layout nav li {
+  margin-bottom: 10px;
+}
+
+.menu-layout nav a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #176b4d;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.menu-layout nav a:hover {
+  background: #e9b949;
+  color: #222;
+}
+
+/* ---------- Menu Content ---------- */
+
+.menu-layout main {
+  min-width: 0;
+}
+
+.menu-layout main h1 {
+  margin-top: 0;
+  color: #176b4d;
+}
+
+.menu-layout main h2 {
+  margin-top: 30px;
+}
+
+/* ---------- Dish List ---------- */
+
+.menu-layout main ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* ---------- Dish Card ---------- */
+
+.menu-layout main li {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e6e0d5;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  padding-bottom: 15px;
+}
+
+.menu-layout main li img {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.menu-layout main li a {
+  display: block;
+  padding: 14px 16px 4px;
+  color: #176b4d;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.menu-layout main li a:hover {
+  color: #c89113;
+}
+
+/* ---------- Back to Home ---------- */
+
+.menu-layout main > a {
+  color: #176b4d;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.menu-layout main > a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Loading / Skeleton ---------- */
+
+.skeleton-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e6e0d5;
+  padding: 14px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+  background: #e8e8e8;
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+}
+
+.skeleton-text {
+  height: 18px;
+  width: 65%;
+  margin-top: 14px;
+  border-radius: 6px;
+  background: #e8e8e8;
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes skeletonPulse {
+  0% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.55;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  .menu-layout {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .menu-layout aside {
+    width: auto;
+  }
+
+  .menu-layout main ul {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-layout main li img {
+    height: 200px;
+  }
+}
+
+.dish-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.skeleton-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e6e0d5;
+  padding: 14px;
+}
