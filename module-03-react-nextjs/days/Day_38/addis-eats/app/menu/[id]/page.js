@@ -1,26 +1,51 @@
 import { notFound } from "next/navigation";
-
-const validDishes = ["kitfo", "shiro", "firfir"];
+import Image from "next/image";
+import Link from "next/link";
+import { getDishes } from "@/lib/dishes";
 
 export async function generateStaticParams() {
-  return validDishes.map((id) => ({
-    id,
+  const dishes = await getDishes();
+
+  return dishes.map((dish) => ({
+    id: String(dish.id),
   }));
 }
 
-async function DishPage({ params }) {
+export default async function DishPage({ params }) {
   const { id } = await params;
 
-  if (!validDishes.includes(id)) {
+  const dishes = await getDishes();
+
+  const dish = dishes.find(
+    (dish) => String(dish.id) === id
+  );
+
+  if (!dish) {
     notFound();
   }
 
   return (
-    <main>
-      <h1>Dish: {id}</h1>
-      <p>This is the detail page for this dish</p>
-    </main>
+    <article className="dish-detail">
+      <Link href="/menu">← Back to Menu</Link>
+
+      <Image
+        src={dish.image}
+        alt={dish.name}
+        width={600}
+        height={400}
+      />
+
+      <h1>{dish.name}</h1>
+
+      <p>{dish.description}</p>
+
+      <p>{dish.price} ETB</p>
+
+      <p>Category: {dish.category}</p>
+
+      <p>
+        {dish.spicy ? "🌶️ Spicy" : "Not Spicy"}
+      </p>
+    </article>
   );
 }
-
-export default DishPage;

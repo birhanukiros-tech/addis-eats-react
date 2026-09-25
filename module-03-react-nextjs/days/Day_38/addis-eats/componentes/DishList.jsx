@@ -3,23 +3,30 @@ import Image from "next/image";
 
 function DishList({ dishes }) {
   return (
-    <ul>
+    <ul className="dish-list">
       {dishes.map((dish) => (
-        <li key={dish.id}>
-          <Image src={dish.image} alt={dish.name} width={200} height={150} />
+        <li key={dish.id} className="dish-card">
+          <Image src={dish.image} alt={dish.name} width={400} height={280} />
 
-          <Link href={`/menu/${dish.id}`}>{dish.name}</Link>
+          <div className="dish-card-content">
+            <Link href={`/menu/${dish.id}`} className="dish-name">
+              {dish.name}
+            </Link>
 
-          <p>{dish.description}</p>
+            <p className="dish-description">{dish.description}</p>
 
-          <p>{dish.price} ETB</p>
+            <p className="dish-price">{dish.price} ETB</p>
 
-          <p>Category: {dish.category}</p>
+            <div className="dish-meta">
+              <span>{dish.category}</span>
 
-          <p>{dish.spicy ? "🌶️ Spicy" : "Not Spicy"}</p>
+              <span>{dish.spicy ? "🌶️ Spicy" : "Not Spicy"}</span>
+            </div>
+          </div>
         </li>
       ))}
     </ul>
   );
 }
+
 export default DishList;

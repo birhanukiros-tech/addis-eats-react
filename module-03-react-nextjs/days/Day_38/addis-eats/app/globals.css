@@ -1,199 +1,345 @@
-@import "tailwindcss";
+/* =========================================
+   ADDIS EATS
+   DAY 38 — FRESH MENU DESIGN
+========================================= */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
 }
 
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background: #f7f3ea;
+  color: #26352f;
 }
 
-/* ================================
-   DAY 37 - ADDIS EATS STYLES
-================================ */
-
-/* ---------- Root Header ---------- */
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fffaf0;
-  color: #222;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-header {
-  padding: 18px 30px;
-  background: #176b4d;
-  color: white;
+a:hover {
+  text-decoration: none;
 }
 
-header h2 {
-  margin: 0;
-  font-size: 24px;
-}
-
-footer {
-  margin-top: 50px;
-  padding: 20px;
-  text-align: center;
-  background: #176b4d;
-  color: white;
-}
-
-/* ---------- Menu Layout ---------- */
+/* =========================================
+   MENU LAYOUT
+========================================= */
 
 .menu-layout {
+  min-height: 100vh;
   display: grid;
-  grid-template-columns: 220px 1fr;
-  min-height: 70vh;
-  gap: 30px;
-  padding: 30px;
+  grid-template-columns: 240px 1fr;
+  background: #f7f3ea;
 }
 
-/* ---------- Sidebar ---------- */
+/* =========================================
+   MENU SIDEBAR
+========================================= */
 
-.menu-layout aside {
-  background: white;
-  padding: 22px;
-  border-radius: 14px;
-  border: 1px solid #e6e0d5;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  height: fit-content;
+.menu-sidebar {
+  position: sticky;
+  top: 0;
+
+  height: 100vh;
+
+  padding: 32px 20px;
+
+  background: #173d32;
+  color: #ffffff;
+
+  border-right: 1px solid #244d41;
 }
 
-.menu-layout aside h2 {
-  margin-top: 0;
-  color: #176b4d;
+.menu-sidebar h2 {
+  margin: 0 0 30px;
+  padding-left: 10px;
+
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
-.menu-layout nav ul {
-  list-style: none;
+.menu-sidebar nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
   padding: 0;
-  margin: 20px 0 0;
+  margin: 0;
+
+  list-style: none;
 }
 
-.menu-layout nav li {
-  margin-bottom: 10px;
+.menu-sidebar li {
+  margin: 0;
 }
 
-.menu-layout nav a {
+.menu-sidebar a {
   display: block;
-  padding: 10px 12px;
-  border-radius: 8px;
-  color: #176b4d;
-  text-decoration: none;
+
+  padding: 13px 14px;
+
+  border-radius: 12px;
+
+  color: #dce9e3;
+
+  font-size: 15px;
   font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.menu-layout nav a:hover {
-  background: #e9b949;
-  color: #222;
+.menu-sidebar a:hover {
+  background: #245746;
+  color: #ffffff;
+
+  transform: translateX(3px);
 }
 
-/* ---------- Menu Content ---------- */
+/* =========================================
+   MENU CONTENT
+========================================= */
 
-.menu-layout main {
+.menu-content {
   min-width: 0;
+
+  padding: 45px;
 }
 
-.menu-layout main h1 {
-  margin-top: 0;
+.menu-content h1 {
+  margin: 0 0 10px;
+
+  color: #173d32;
+
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.menu-content > a {
+  display: inline-block;
+
+  margin-bottom: 35px;
+
   color: #176b4d;
-}
 
-.menu-layout main h2 {
-  margin-top: 30px;
-}
-
-/* ---------- Dish List ---------- */
-
-.menu-layout main ul {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-}
-
-/* ---------- Dish Card ---------- */
-
-.menu-layout main li {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid #e6e0d5;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  padding-bottom: 15px;
-}
-
-.menu-layout main li img {
-  display: block;
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-}
-
-.menu-layout main li a {
-  display: block;
-  padding: 14px 16px 4px;
-  color: #176b4d;
-  text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
 }
 
-.menu-layout main li a:hover {
-  color: #c89113;
-}
-
-/* ---------- Back to Home ---------- */
-
-.menu-layout main > a {
-  color: #176b4d;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.menu-layout main > a:hover {
+.menu-content > a:hover {
+  color: #0f4e38;
   text-decoration: underline;
 }
 
-/* ---------- Loading / Skeleton ---------- */
+.menu-content h2 {
+  margin: 0 0 25px;
 
-.skeleton-card {
-  background: white;
-  border-radius: 16px;
-  border: 1px solid #e6e0d5;
-  padding: 14px;
+  color: #26352f;
+
+  font-size: 28px;
+  font-weight: 750;
 }
 
-.skeleton-image {
+/* =========================================
+   FILTER SHELL
+========================================= */
+
+.filter-shell {
   width: 100%;
-  height: 170px;
-  border-radius: 10px;
-  background: #e8e8e8;
-  animation: skeletonPulse 1.4s ease-in-out infinite;
 }
 
-.skeleton-text {
-  height: 18px;
-  width: 65%;
-  margin-top: 14px;
-  border-radius: 6px;
-  background: #e8e8e8;
-  animation: skeletonPulse 1.4s ease-in-out infinite;
+/* =========================================
+   DISH LIST
+========================================= */
+
+.dish-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+/* =========================================
+   DISH CARD
+========================================= */
+
+.dish-card {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e5dfd3;
+  border-radius: 20px;
+
+  box-shadow:
+    0 8px 25px rgba(23, 61, 50, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.dish-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 16px 35px rgba(23, 61, 50, 0.14);
+}
+
+/* =========================================
+   DISH IMAGE
+========================================= */
+
+.dish-card img {
+  display: block;
+
+  width: 100%;
+  height: 220px;
+
+  object-fit: cover;
+}
+
+/* =========================================
+   DISH CARD CONTENT
+========================================= */
+
+.dish-card-content {
+  padding: 20px;
+}
+
+/* =========================================
+   DISH NAME
+========================================= */
+
+.dish-name {
+  display: inline-block;
+
+  margin-bottom: 9px;
+
+  color: #173d32;
+
+  font-size: 22px;
+  font-weight: 800;
+
+  transition: color 0.2s ease;
+}
+
+.dish-name:hover {
+  color: #176b4d;
+
+  text-decoration: none;
+}
+
+/* =========================================
+   DISH DESCRIPTION
+========================================= */
+
+.dish-description {
+  margin: 0 0 15px;
+
+  color: #68766f;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   DISH PRICE
+========================================= */
+
+.dish-price {
+  margin: 0 0 15px;
+
+  color: #176b4d;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* =========================================
+   DISH META
+========================================= */
+
+.dish-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding-top: 13px;
+
+  border-top: 1px solid #eee8dc;
+
+  color: #7a857f;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-transform: capitalize;
+}
+
+/* =========================================
+   SKELETON LOADING
+========================================= */
+
+.dish-skelton-gird {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+.skelton-card {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e5dfd3;
+  border-radius: 20px;
+}
+
+.skelton-image {
+  width: 100%;
+  height: 220px;
+
+  background: #e4dfd5;
+
+  animation: skeletonPulse 1.4s infinite;
+}
+
+.skelton-text {
+  height: 80px;
+
+  margin: 18px;
+
+  border-radius: 10px;
+
+  background: #e4dfd5;
+
+  animation: skeletonPulse 1.4s infinite;
 }
 
 @keyframes skeletonPulse {
@@ -210,36 +356,233 @@ footer {
   }
 }
 
-/* ---------- Mobile ---------- */
+/* =========================================
+   TABLET
+========================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .menu-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 210px 1fr;
+  }
+
+  .menu-content {
+    padding: 35px 25px;
+  }
+
+  .menu-content h1 {
+    font-size: 36px;
+  }
+
+  .dish-list,
+  .dish-skelton-gird {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .menu-layout {
+    display: block;
+  }
+
+  .menu-sidebar {
+    position: static;
+
+    height: auto;
+
     padding: 20px;
   }
 
-  .menu-layout aside {
-    width: auto;
+  .menu-sidebar h2 {
+    margin-bottom: 15px;
   }
 
-  .menu-layout main ul {
+  .menu-sidebar nav ul {
+    flex-direction: row;
+
+    overflow-x: auto;
+
+    gap: 8px;
+
+    padding-bottom: 5px;
+  }
+
+  .menu-sidebar a {
+    white-space: nowrap;
+  }
+
+  .menu-content {
+    padding: 30px 18px 50px;
+  }
+
+  .menu-content h1 {
+    font-size: 32px;
+  }
+
+  .menu-content h2 {
+    font-size: 24px;
+  }
+
+  .dish-list,
+  .dish-skelton-gird {
     grid-template-columns: 1fr;
   }
 
-  .menu-layout main li img {
-    height: 200px;
+  .dish-card img,
+  .skelton-image {
+    height: 230px;
+  }
+
+  .dish-card-content {
+    padding: 18px;
   }
 }
 
-.dish-skeleton-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+  .menu-sidebar {
+    padding: 16px;
+  }
+
+  .menu-content {
+    padding: 25px 14px 40px;
+  }
+
+  .menu-content h1 {
+    font-size: 28px;
+  }
+
+  .dish-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
-.skeleton-card {
-  background: white;
-  border-radius: 16px;
-  border: 1px solid #e6e0d5;
-  padding: 14px;
+/* =========================================
+   DISH DETAIL PAGE
+========================================= */
+
+.dish-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0 50px;
+}
+
+/* Back to menu */
+
+.dish-detail > a {
+  display: inline-block;
+
+  margin-bottom: 25px;
+
+  color: #176b4d;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  transition: color 0.2s ease;
+}
+
+.dish-detail > a:hover {
+  color: #0f4e38;
+  text-decoration: underline;
+}
+
+/* Dish image */
+
+.dish-detail img {
+  display: block;
+
+  width: 100%;
+  max-width: 700px;
+  height: 420px;
+
+  margin: 0 auto 30px;
+
+  object-fit: cover;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 12px 30px rgba(23, 61, 50, 0.12);
+}
+
+/* Dish name */
+
+.dish-detail h1 {
+  margin: 0 0 15px;
+
+  color: #173d32;
+
+  font-size: 40px;
+  font-weight: 800;
+
+  line-height: 1.2;
+}
+
+/* Description */
+
+.dish-detail p {
+  margin: 0 0 15px;
+
+  color: #68766f;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Price */
+
+.dish-detail p:nth-of-type(2) {
+  color: #176b4d;
+
+  font-size: 24px;
+  font-weight: 800;
+}
+
+/* Category and spicy information */
+
+.dish-detail p:nth-of-type(3),
+.dish-detail p:nth-of-type(4) {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #7a857f;
+}
+
+/* =========================================
+   DISH DETAIL MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .dish-detail {
+    padding: 10px 0 40px;
+  }
+
+  .dish-detail img {
+    height: 280px;
+
+    margin-bottom: 22px;
+
+    border-radius: 18px;
+  }
+
+  .dish-detail h1 {
+    font-size: 32px;
+  }
+
+  .dish-detail p {
+    font-size: 15px;
+  }
+
+  .dish-detail p:nth-of-type(2) {
+    font-size: 21px;
+  }
 }
