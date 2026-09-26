@@ -5,28 +5,21 @@ function DishList({ dishes }) {
   return (
     <ul className="dish-list">
       {dishes.map((dish) => (
-        <li key={dish.id} className="dish-card">
-          <Image src={dish.image} alt={dish.name} width={400} height={280} />
+        <li key={dish.id} className="">
+          <Image src={dish.image} alt={dish.name} width={200} height={150} />
 
-          <div className="dish-card-content">
-            <Link href={`/menu/${dish.id}`} className="dish-name">
-              {dish.name}
-            </Link>
+          <Link href={`/menu/${dish.id}`}>{dish.name}</Link>
 
-            <p className="dish-description">{dish.description}</p>
+          <p>{dish.description}</p>
 
-            <p className="dish-price">{dish.price} ETB</p>
+          <p>{dish.price} ETB</p>
 
-            <div className="dish-meta">
-              <span>{dish.category}</span>
+          <p>Category: {dish.category}</p>
 
-              <span>{dish.spicy ? "🌶️ Spicy" : "Not Spicy"}</span>
-            </div>
-          </div>
+          <p>{dish.spicy ? "🌶️ Spicy" : "Not Spicy"}</p>
         </li>
       ))}
     </ul>
   );
 }
-
 export default DishList;
