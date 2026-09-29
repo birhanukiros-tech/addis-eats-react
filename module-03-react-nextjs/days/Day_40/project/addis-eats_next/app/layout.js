@@ -9,6 +9,7 @@ import FavoritesProvider from "../components/FavoritesProvider";
 import AuthProvider from "../components/AuthProvider";
 import OrderProvider from "../components/OrderProvider";
 import AdminAuthProvider from "@/components/AdminAuthProvider";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ function RootLayout({ children }) {
     >
       <body className="min-h-screen flex flex-col">
         <AdminAuthProvider>
+          <ThemeProvider>
         <CartProvider>
           <FavoritesProvider>
             <AuthProvider>
@@ -49,6 +51,7 @@ function RootLayout({ children }) {
             </AuthProvider>
           </FavoritesProvider>
         </CartProvider>
+        </ThemeProvider>
       </AdminAuthProvider>
       </body>
     </html>

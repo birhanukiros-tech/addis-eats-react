@@ -2,6 +2,7 @@ import Link from "next/link";
 import CartCount from "./CartCount";
 import FavoriteCount from "./FavoriteCount";
 import AuthNav from "./AuthNav";
+import ThemeToggle from "./ThemeToggle";
 
 function Header() {
   return (
@@ -62,6 +63,7 @@ function Header() {
             🛒 Cart
             <CartCount />
           </Link>
+          <ThemeToggle />
 
           <div className="ml-2 border-l border-white/20 pl-3">
             <AuthNav />
