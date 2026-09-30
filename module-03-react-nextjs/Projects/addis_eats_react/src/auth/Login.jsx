@@ -3,53 +3,57 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const { login } = useAuth();
-    const navigate = useNavigate();
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-    function handleLogin(e) {
-        e.preventDefault();
+  function handleLogin(e) {
+    e.preventDefault();
 
-        if (username === "customer" && password === "1234") {
-            login(username);
-            navigate("/checkout");
-        } else {
-            alert("Invalid username or password.");
-        }
+    if (username.trim() && password.trim()) {
+      login(username);
+      navigate("/checkout");
+    } else {
+      setError("Please enter a valid username and password.");
     }
+  }
 
-    return (
-        <div className="login-page">
-            <h1>Sign In</h1>
+  return (
+    <div className="login-page">
+      <h1>Sign In</h1>
 
-            <p>
-                Please sign in to continue to checkout.
-            </p>
+      <p>Please sign in to continue to checkout.</p>
 
-            <form onSubmit={handleLogin}>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value);
+            setError("");
+          }}
+        />
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setError("");
+          }}
+        />
 
-                <button type="submit">
-                    Sign In
-                </button>
-            </form>
-        </div>
-    );
+        {error && <p className="form-error">{error}</p>}
+
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+  );
 }
 
 export default Login;
-
