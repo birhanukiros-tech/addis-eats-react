@@ -1,29 +1,28 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import getDishes from "./api/dishes";
 
 function Home() {
-  const specialDishes = [
-    {
-      id: 1,
-      name: "Shiro",
-      price: 200,
-      image: "/images/shiro.png",
-      description: "Smooth chickpea stew with Ethiopian spices.",
-    },
-    {
-      id: 4,
-      name: "Doro Wet",
-      price: 600,
-      image: "/images/doro_wet.png",
-      description: "Classic Ethiopian chicken stew with berbere.",
-    },
-    {
-      id: 5,
-      name: "Kitfo",
-      price: 500,
-      image: "/images/kitfo.png",
-      description: "Finely minced beef seasoned with Ethiopian spices.",
-    },
-  ];
+  const [dishes, setDishes] = useState([]);
+
+  useEffect(() => {
+    async function loadDishes() {
+      try {
+        const data = await getDishes();
+        setDishes(data);
+      } catch (error) {
+        console.error("Failed to load home dishes:", error);
+      }
+    }
+
+    loadDishes();
+  }, []);
+
+  const specialIds = [1, 4, 5];
+
+  const specialDishes = dishes.filter((dish) =>
+    specialIds.includes(Number(dish.id)),
+  );
 
   return (
     <div className="home-page">
@@ -31,14 +30,20 @@ function Home() {
         <div className="hero-content">
           <p className="hero-eyebrow">Welcome to Addis Eats</p>
 
-          <h1>Authentic Ethiopian Food,<br />Delivered to You</h1>
+          <h1>
+            Authentic Ethiopian Food,
+            <br />
+            Delivered to You
+          </h1>
 
           <p className="hero-description">
             Enjoy your favorite Ethiopian dishes, fresh, flavorful, and
             delivered to your door.
           </p>
 
-          <Link to="/menu" className="hero-button">Explore Menu</Link>
+          <Link to="/menu" className="hero-button">
+            Explore Menu
+          </Link>
         </div>
       </section>
 
@@ -47,7 +52,11 @@ function Home() {
 
         <div className="specials-grid">
           {specialDishes.map((dish) => (
-            <article className="special-card" key={dish.id}>
+            <Link
+              to={`/menu/${dish.id}`}
+              className="special-card"
+              key={dish.id}
+            >
               <img src={dish.image} alt={dish.name} />
 
               <div className="special-card-content">
@@ -56,8 +65,10 @@ function Home() {
                 <p>{dish.description}</p>
 
                 <strong>{dish.price} ETB</strong>
+
+                <span>View Details →</span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -66,14 +77,16 @@ function Home() {
         <h2>Explore Our Menu</h2>
 
         <div className="category-links">
-          <Link to="/menu?category=fasting">Fasting</Link>
+          <Link to="/menu?category=fast">Fasting</Link>
 
-          <Link to="/menu?category=non-fasting">Non-Fasting</Link>
+          <Link to="/menu?category=non-fast">Non-Fasting</Link>
 
           <Link to="/menu?category=drinks">Drinks</Link>
         </div>
 
-        <Link to="/menu" className="browse-menu-button">Browse Full Menu</Link>
+        <Link to="/menu" className="browse-menu-button">
+          Browse Full Menu
+        </Link>
       </section>
     </div>
   );

@@ -195,15 +195,21 @@ select {
   min-height: 100%;
 }
 
+/* ---------------------------------------------------------
+   HERO
+   --------------------------------------------------------- */
+
 .hero {
   min-height: 500px;
   display: flex;
   align-items: center;
   padding: 70px 60px;
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    linear-gradient(
+      rgba(0, 0, 0, 0.28),
+      rgba(0, 0, 0, 0.45)
+    ),
     url("/images/hero-food.jpg");
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -215,6 +221,7 @@ select {
 }
 
 .hero-eyebrow {
+  margin: 0 0 12px;
   color: var(--color-accent);
   font-weight: bold;
   font-size: var(--font-size-lg);
@@ -228,6 +235,7 @@ select {
 
 .hero-content > p:not(.hero-eyebrow) {
   max-width: 550px;
+  margin-bottom: 0;
   line-height: 1.7;
   font-size: var(--font-size-lg);
 }
@@ -242,22 +250,31 @@ select {
   color: var(--color-text);
   text-decoration: none;
   font-weight: bold;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
+
+.hero-button:hover,
+.browse-menu-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------------------------------------------------------
+   TODAY'S SPECIALS
+   --------------------------------------------------------- */
 
 .specials {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 45px 20px 25px;
-}
-.home-categories {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 20px 45px;
+  padding: 55px 20px 30px;
 }
 
 .specials h2,
 .home-categories h2 {
-  margin: 0 0 25px;
+  margin: 0 0 28px;
   font-size: var(--font-size-2xl);
   text-align: center;
 }
@@ -268,37 +285,90 @@ select {
   gap: 24px;
 }
 
+/* Special card is now a Link */
 .special-card {
+  display: block;
   overflow: hidden;
-
   background: var(--color-surface);
   border-radius: var(--radius-lg);
-
   box-shadow: var(--shadow-card);
+  color: var(--color-text);
+  text-decoration: none;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
+.special-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+/* Image */
 
 .special-card img {
   width: 100%;
   height: 220px;
   object-fit: cover;
+
+  transition: transform 0.3s ease;
 }
+
+.special-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Card content */
 
 .special-card-content {
   padding: 20px;
 }
 
 .special-card-content h3 {
-  margin-top: 0;
+  margin: 0 0 10px;
+  color: var(--color-text);
   font-size: var(--font-size-xl);
 }
 
 .special-card-content p {
+  min-height: 72px;
+  margin: 0 0 16px;
   color: var(--color-muted);
   line-height: 1.5;
 }
 
 .special-card-content strong {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--color-primary);
   font-size: var(--font-size-lg);
+}
+
+/* View details */
+
+.special-card-content span {
+  display: inline-block;
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.special-card:hover .special-card-content span {
+  color: var(--color-accent);
+}
+
+/* ---------------------------------------------------------
+   HOME CATEGORIES
+   --------------------------------------------------------- */
+
+.home-categories {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px 20px 55px;
 }
 
 .category-links {
@@ -315,18 +385,93 @@ select {
   color: var(--color-primary);
   text-decoration: none;
   font-weight: bold;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .category-links a:hover {
   background: var(--color-primary);
   color: white;
+  transform: translateY(-2px);
 }
 
 .browse-menu-button {
   display: block;
   width: fit-content;
-  margin: 25px auto 0;
+  margin: 28px auto 0;
 }
+
+/* ---------------------------------------------------------
+   HOME MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .specials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 420px;
+    padding: 50px 25px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 400px;
+    padding: 45px 20px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero-content > p:not(.hero-eyebrow) {
+    font-size: var(--font-size-base);
+  }
+
+  .specials {
+    padding: 40px 15px 25px;
+  }
+
+  .specials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .special-card img {
+    height: 230px;
+  }
+
+  .special-card-content {
+    padding: 18px;
+  }
+
+  .special-card-content p {
+    min-height: auto;
+  }
+
+  .home-categories {
+    padding: 20px 15px 45px;
+  }
+
+  .category-links {
+    gap: 10px;
+  }
+
+  .category-links a {
+    padding: 11px 18px;
+  }
+}
+
 
 /* =========================================================
    9. MENU PAGE
