@@ -33,9 +33,9 @@ function Layout() {
           <div className="footer-links">
             <h3>Explore</h3>
 
-            <Link to="/menu?category=fasting">Fasting</Link>
+            <Link to="/menu?category=fast">Fasting</Link>
 
-            <Link to="/menu?category=non-fasting">Non-Fasting</Link>
+            <Link to="/menu?category=non-fast">Non-Fasting</Link>
 
             <Link to="/menu?category=drinks">Drinks</Link>
           </div>
